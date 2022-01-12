@@ -58,3 +58,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Logs/
+.idea/
+UserSettings/
+
+Assets/StreamingAssets/build_info
+Assets/StreamingAssets/build_info.meta
