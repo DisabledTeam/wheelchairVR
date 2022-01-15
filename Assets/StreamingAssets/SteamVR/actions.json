@@ -93,6 +93,14 @@
     {
       "name": "/actions/WheelChair/in/JoyStick",
       "type": "vector2"
+    },
+    {
+      "name": "/actions/WheelChair/in/FirstButtonAnalog",
+      "type": "vector1"
+    },
+    {
+      "name": "/actions/WheelChair/in/JoystickTouched",
+      "type": "boolean"
     }
   ],
   "action_sets": [

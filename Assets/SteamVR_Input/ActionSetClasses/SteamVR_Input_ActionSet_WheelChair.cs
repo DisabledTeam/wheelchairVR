@@ -40,5 +40,21 @@ namespace Valve.VR
                 return SteamVR_Actions.wheelChair_JoyStick;
             }
         }
+        
+        public virtual SteamVR_Action_Single FirstButtonAnalog
+        {
+            get
+            {
+                return SteamVR_Actions.wheelChair_FirstButtonAnalog;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean JoystickTouched
+        {
+            get
+            {
+                return SteamVR_Actions.wheelChair_JoystickTouched;
+            }
+        }
     }
 }
