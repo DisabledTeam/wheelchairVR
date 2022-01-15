@@ -25,7 +25,7 @@ namespace Valve.VR
         
         private static SteamVR_Input_ActionSet_mixedreality p_mixedreality;
         
-        private static SteamVR_Input_ActionSet_WheelChair p_WheelChair;
+        private static SteamVR_Input_ActionSet_wheelchair p_wheelchair;
         
         public static SteamVR_Input_ActionSet_default _default
         {
@@ -59,11 +59,11 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Input_ActionSet_WheelChair WheelChair
+        public static SteamVR_Input_ActionSet_wheelchair wheelchair
         {
             get
             {
-                return SteamVR_Actions.p_WheelChair.GetCopy<SteamVR_Input_ActionSet_WheelChair>();
+                return SteamVR_Actions.p_wheelchair.GetCopy<SteamVR_Input_ActionSet_wheelchair>();
             }
         }
         
@@ -73,13 +73,13 @@ namespace Valve.VR
             SteamVR_Actions.p_platformer = ((SteamVR_Input_ActionSet_platformer)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_platformer>("/actions/platformer")));
             SteamVR_Actions.p_buggy = ((SteamVR_Input_ActionSet_buggy)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_buggy>("/actions/buggy")));
             SteamVR_Actions.p_mixedreality = ((SteamVR_Input_ActionSet_mixedreality)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_mixedreality>("/actions/mixedreality")));
-            SteamVR_Actions.p_WheelChair = ((SteamVR_Input_ActionSet_WheelChair)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_WheelChair>("/actions/WheelChair")));
+            SteamVR_Actions.p_wheelchair = ((SteamVR_Input_ActionSet_wheelchair)(SteamVR_ActionSet.Create<SteamVR_Input_ActionSet_wheelchair>("/actions/wheelchair")));
             Valve.VR.SteamVR_Input.actionSets = new Valve.VR.SteamVR_ActionSet[] {
                     SteamVR_Actions._default,
                     SteamVR_Actions.platformer,
                     SteamVR_Actions.buggy,
                     SteamVR_Actions.mixedreality,
-                    SteamVR_Actions.WheelChair};
+                    SteamVR_Actions.wheelchair};
         }
     }
 }

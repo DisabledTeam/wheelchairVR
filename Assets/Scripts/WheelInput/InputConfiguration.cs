@@ -18,13 +18,18 @@ namespace WheelInput
                 this.actionName = actionName;
             }
 
-            public string GetFull(string defaultActionSet)
-            {
-                return $"/actions/{actionSet ?? defaultActionSet}/in/{actionName}";
+            public string GetFull(string defaultActionSet) {
+                var aSet = actionSet != "" ? actionSet : defaultActionSet;
+                var fullPath = $"/actions/{aSet}/in/{actionName}";
+                Debug.Log(fullPath);
+                return fullPath;
             }
         }
 
-        [SerializeField] private string defaultActionSet = "WheelChair";
+        [SerializeField] public SteamVR_Input_Sources leftHand = SteamVR_Input_Sources.LeftHand;
+        [SerializeField] public SteamVR_Input_Sources rightHand = SteamVR_Input_Sources.RightHand;
+        
+        [SerializeField] private string defaultActionSet = "wheelchair";
         [SerializeField] private ActionSetNamePair firstButtonAction = new ActionSetNamePair(null, "FirstButton");
 
         [SerializeField] private ActionSetNamePair firstButtonAnalogAction = new ActionSetNamePair(null, "FirstButtonAnalog");
@@ -75,8 +80,10 @@ namespace WheelInput
         private void InitAllInputs()
         {
             firstButton = SteamVR_Input.GetAction<SteamVR_Action_Boolean>(firstButtonAction.GetFull(defaultActionSet));
+            // firstButtonAnalog =
+            //     SteamVR_Input.GetAction<SteamVR_Action_Single>(firstButtonAnalogAction.GetFull(defaultActionSet));
             firstButtonAnalog =
-                SteamVR_Input.GetAction<SteamVR_Action_Single>(firstButtonAnalogAction.GetFull(defaultActionSet));
+                SteamVR_Input.GetAction<SteamVR_Action_Single>(firstButtonAnalogAction.actionSet, firstButtonAnalogAction.actionName);
             secondButton =
                 SteamVR_Input.GetAction<SteamVR_Action_Boolean>(secondButtonAction.GetFull(defaultActionSet));
             joystickTouched = SteamVR_Input.GetAction<SteamVR_Action_Boolean>(joyStickAction.GetFull(defaultActionSet));

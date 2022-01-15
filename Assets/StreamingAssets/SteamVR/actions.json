@@ -83,23 +83,23 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/WheelChair/in/FirstButton",
+      "name": "/actions/wheelchair/in/FirstButton",
       "type": "boolean"
     },
     {
-      "name": "/actions/WheelChair/in/SecondButton",
+      "name": "/actions/wheelchair/in/SecondButton",
       "type": "boolean"
     },
     {
-      "name": "/actions/WheelChair/in/JoyStick",
+      "name": "/actions/wheelchair/in/JoyStick",
       "type": "vector2"
     },
     {
-      "name": "/actions/WheelChair/in/FirstButtonAnalog",
+      "name": "/actions/wheelchair/in/FirstButtonAnalog",
       "type": "vector1"
     },
     {
-      "name": "/actions/WheelChair/in/JoystickTouched",
+      "name": "/actions/wheelchair/in/JoystickTouched",
       "type": "boolean"
     }
   ],
@@ -121,7 +121,7 @@
       "usage": "single"
     },
     {
-      "name": "/actions/WheelChair",
+      "name": "/actions/wheelchair",
       "usage": "single"
     }
   ],

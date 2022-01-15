@@ -333,6 +333,174 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.03
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1037981300
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8760914321537739521, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_Name
+      value: DebugInputCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760914321537739525, guid: 5c4d93ef52a9a694089712253aed3349,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5c4d93ef52a9a694089712253aed3349, type: 3}
+--- !u!1 &1325397538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2066299766086286200, guid: 3b766f192bd46a543911f9c3d2512342,
+    type: 3}
+  m_PrefabInstance: {fileID: 2066299767678033144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1325397539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325397538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc235afd519f0264a8929d461910d082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultActionSet: wheelchair
+  firstButtonAction:
+    actionSet: 
+    actionName: FirstButton
+  firstButtonAnalogAction:
+    actionSet: default
+    actionName: Squeeze
+  secondButtonAction:
+    actionSet: 
+    actionName: SecondButton
+  joyStickAction:
+    actionSet: 
+    actionName: JoyStick
+  joystickTouchedAction:
+    actionSet: 
+    actionName: JoystickTouched
+  firstButton:
+    actionPath: 
+    needsReinit: 0
+  firstButtonAnalog:
+    actionPath: 
+    needsReinit: 0
+  secondButton:
+    actionPath: 
+    needsReinit: 0
+  joystickTouched:
+    actionPath: 
+    needsReinit: 0
+  joyStick:
+    actionPath: 
+    needsReinit: 0
 --- !u!1001 &2066299767678033144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -404,6 +572,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ClearFlags
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066299767520162187, guid: 3b766f192bd46a543911f9c3d2512342,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2066299767520162187, guid: 3b766f192bd46a543911f9c3d2512342,
         type: 3}

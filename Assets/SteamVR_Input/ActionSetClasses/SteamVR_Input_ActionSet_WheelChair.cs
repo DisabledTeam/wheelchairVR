@@ -14,14 +14,14 @@ namespace Valve.VR
     using UnityEngine;
     
     
-    public class SteamVR_Input_ActionSet_WheelChair : Valve.VR.SteamVR_ActionSet
+    public class SteamVR_Input_ActionSet_wheelchair : Valve.VR.SteamVR_ActionSet
     {
         
         public virtual SteamVR_Action_Boolean FirstButton
         {
             get
             {
-                return SteamVR_Actions.wheelChair_FirstButton;
+                return SteamVR_Actions.wheelchair_FirstButton;
             }
         }
         
@@ -29,7 +29,7 @@ namespace Valve.VR
         {
             get
             {
-                return SteamVR_Actions.wheelChair_SecondButton;
+                return SteamVR_Actions.wheelchair_SecondButton;
             }
         }
         
@@ -37,7 +37,7 @@ namespace Valve.VR
         {
             get
             {
-                return SteamVR_Actions.wheelChair_JoyStick;
+                return SteamVR_Actions.wheelchair_JoyStick;
             }
         }
         
@@ -45,7 +45,7 @@ namespace Valve.VR
         {
             get
             {
-                return SteamVR_Actions.wheelChair_FirstButtonAnalog;
+                return SteamVR_Actions.wheelchair_FirstButtonAnalog;
             }
         }
         
@@ -53,7 +53,7 @@ namespace Valve.VR
         {
             get
             {
-                return SteamVR_Actions.wheelChair_JoystickTouched;
+                return SteamVR_Actions.wheelchair_JoystickTouched;
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Text;
 using TMPro;
 using UnityEngine;
+using Valve.VR;
 
 namespace WheelInput
 {
@@ -15,32 +16,49 @@ namespace WheelInput
 
         private string GetInputValuesText()
         {
+            var ic = InputConfiguration.Instance;
             var sb = new StringBuilder();
 
             sb.Append("firstButton.state:");
-            sb.Append(InputConfiguration.Instance.firstButton.state);
+            sb.Append(ic.firstButton.GetState(SteamVR_Input_Sources.Any));
+            sb.Append(", ");
+            sb.Append(ic.firstButton.GetState(SteamVR_Input_Sources.LeftHand));
+            sb.Append(", ");
+            sb.Append(ic.firstButton.GetState(SteamVR_Input_Sources.RightHand));
             sb.Append("\n");
 
             sb.Append("firstButtonAnalog.axis:");
-            sb.Append(InputConfiguration.Instance.firstButtonAnalog.axis);
+            sb.Append(ic.firstButtonAnalog.GetAxis(SteamVR_Input_Sources.Any));
+            sb.Append(", ");
+            sb.Append(ic.firstButtonAnalog.GetAxis(SteamVR_Input_Sources.LeftHand));
+            sb.Append(", ");
+            sb.Append(ic.firstButtonAnalog.GetAxis(SteamVR_Input_Sources.RightHand));
             sb.Append("\n");
 
             sb.Append("secondButton.state:");
-            sb.Append(InputConfiguration.Instance.secondButton.state);
+            sb.Append(ic.secondButton.GetState(SteamVR_Input_Sources.Any));
+            sb.Append(", ");
+            sb.Append(ic.secondButton.GetState(SteamVR_Input_Sources.LeftHand));
+            sb.Append(", ");
+            sb.Append(ic.secondButton.GetState(SteamVR_Input_Sources.RightHand));
             sb.Append("\n");
 
             sb.Append("joyStick.axis:");
-            sb.Append(InputConfiguration.Instance.joyStick.axis);
+            sb.Append(ic.joyStick.axis);
             sb.Append("\n");
 
 
             sb.Append("joyStick.delta:");
-            sb.Append(InputConfiguration.Instance.joyStick.delta);
+            sb.Append(ic.joyStick.delta);
             sb.Append("\n");
 
 
             sb.Append("joystickTouched.state:");
-            sb.Append(InputConfiguration.Instance.joystickTouched.state);
+            sb.Append(ic.joystickTouched.GetState(SteamVR_Input_Sources.Any));
+            sb.Append(", ");
+            sb.Append(ic.joystickTouched.GetState(SteamVR_Input_Sources.LeftHand));
+            sb.Append(", ");
+            sb.Append(ic.joystickTouched.GetState(SteamVR_Input_Sources.RightHand));
             sb.Append("\n");
 
             return sb.ToString();
