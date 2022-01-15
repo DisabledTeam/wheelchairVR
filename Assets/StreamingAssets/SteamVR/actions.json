@@ -81,6 +81,18 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/WheelChair/in/FirstButton",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/WheelChair/in/SecondButton",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/WheelChair/in/JoyStick",
+      "type": "vector2"
     }
   ],
   "action_sets": [
@@ -98,6 +110,10 @@
     },
     {
       "name": "/actions/mixedreality",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/WheelChair",
       "usage": "single"
     }
   ],
