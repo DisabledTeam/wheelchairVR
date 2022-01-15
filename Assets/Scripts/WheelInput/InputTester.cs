@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -12,6 +13,21 @@ namespace WheelInput
         private void Update()
         {
             fullInputText.text = GetInputValuesText();
+        }
+
+        private void OnEnable()
+        {
+            InputConfiguration.Instance.firstButton.onState += OnStateTrue;
+        }
+        
+        private void OnDisable()
+        {
+            InputConfiguration.Instance.firstButton.onState -= OnStateTrue;
+        }
+
+        private void OnStateTrue(SteamVR_Action_Boolean fromaction, SteamVR_Input_Sources fromsource)
+        {
+            Debug.Log("OnStateTrue");
         }
 
         private string GetInputValuesText()
@@ -61,6 +77,17 @@ namespace WheelInput
             sb.Append(ic.joystickTouched.GetState(SteamVR_Input_Sources.RightHand));
             sb.Append("\n");
 
+            
+
+
+            sb.Append("SteamVR_Input.initialized:");
+            sb.Append(SteamVR_Input.initialized);
+            sb.Append("\n");
+            sb.Append("SteamVR_Input.GetActionSet(wheelchair).IsActive()");
+            sb.Append(SteamVR_Input.GetActionSet("wheelchair").IsActive());
+            sb.Append("\n");
+
+            
             return sb.ToString();
         }
     }
