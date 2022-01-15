@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Valve.VR;
 
-namespace Input {
+namespace WheelInput {
 	public class InputConfiguration : ScriptableObject {
 		[Serializable]
 		class ActionSetNamePair {
