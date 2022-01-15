@@ -470,36 +470,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc235afd519f0264a8929d461910d082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultActionSet: wheelchair
-  firstButtonAction:
-    actionSet: 
-    actionName: FirstButton
-  firstButtonAnalogAction:
-    actionSet: default
-    actionName: Squeeze
-  secondButtonAction:
-    actionSet: 
-    actionName: SecondButton
-  joyStickAction:
-    actionSet: 
-    actionName: JoyStick
-  joystickTouchedAction:
-    actionSet: 
-    actionName: JoystickTouched
+  leftHand: 1
+  rightHand: 2
   firstButton:
-    actionPath: 
+    actionPath: /actions/wheelchair/in/FirstButton
     needsReinit: 0
   firstButtonAnalog:
-    actionPath: 
+    actionPath: /actions/wheelchair/in/FirstButtonAnalog
     needsReinit: 0
   secondButton:
-    actionPath: 
+    actionPath: /actions/wheelchair/in/SecondButton
     needsReinit: 0
   joystickTouched:
-    actionPath: 
+    actionPath: /actions/wheelchair/in/JoystickTouched
     needsReinit: 0
   joyStick:
-    actionPath: 
+    actionPath: /actions/wheelchair/in/JoyStick
     needsReinit: 0
 --- !u!1001 &2066299767678033144
 PrefabInstance:
