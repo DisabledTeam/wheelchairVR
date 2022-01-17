@@ -10,6 +10,10 @@ namespace Interactable
         [SerializeField] private bool needDestroyOnDrop;
         [SerializeField] private bool needSwapScripts;
 
+
+        [Header("Links")]
+        [SerializeField] private Interact.Interactable interactable;
+
         [Header("Links can be null if dont need swap")]
         [SerializeField] private PickUpObject pickUpObject;
         [SerializeField] private HandItem handItem;
@@ -29,7 +33,7 @@ namespace Interactable
 
         public PickUpHandInfo PickUp(PlayerHandAxis handAxis)
         {
-            var info = new PickUpHandInfo(this, handAxis);
+            var info = new PickUpHandInfo(this, handAxis, interactable);
             ViewPickUp();
 
             if (needSwapScripts) SwapScripts(true);

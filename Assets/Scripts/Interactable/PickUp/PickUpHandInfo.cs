@@ -7,11 +7,14 @@ namespace Interactable
     {
         public PickUpHandItem UsedPickUp;
         public PlayerHandAxis HandAxis;
+        public Interact.Interactable Interactable;
+        
 
-        public PickUpHandInfo(PickUpHandItem usedPickUp, PlayerHandAxis handAxis)
+        public PickUpHandInfo(PickUpHandItem usedPickUp, PlayerHandAxis handAxis, Interact.Interactable interactable)
         {
             UsedPickUp = usedPickUp;
             HandAxis = handAxis;
+            Interactable = interactable;
         }
     }
 }
