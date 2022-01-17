@@ -10,10 +10,16 @@ namespace Interactable
 
         [Header("Links")]
         [SerializeField] private PlayerHandPickUpChannel pickUpChannel;
+        [SerializeField] private Interact.Interactable interactable;
 
-        private void OnTriggerEnter(Collider other)
+        private void OnEnable()
         {
-            OnInteract(other);
+           
+        }
+
+        private void OnDisable()
+        {
+            
         }
 
         private void OnInteract(Collider other)
