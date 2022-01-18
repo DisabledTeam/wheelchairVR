@@ -11,7 +11,7 @@ namespace InspectorButton.Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-            Debug.Log("target " + target.name);
+            // Debug.Log("target " + target.name);
             System.Attribute[] attrs = System.Attribute.GetCustomAttributes(target.GetType());
             foreach (var attribute in attrs)
             {
