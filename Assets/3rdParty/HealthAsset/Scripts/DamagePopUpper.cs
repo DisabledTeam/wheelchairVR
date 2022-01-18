@@ -17,7 +17,6 @@ namespace HealthBar
             if (prefabToSpawn == null)
             {
                 throw new NullReferenceException("Floating Text Prefab not set");
-                return;
             }
 
             var newText = Instantiate(prefabToSpawn);

@@ -4,7 +4,7 @@ using UnityEngine;
 public class WheelsTest : MonoBehaviour
 {
     [SerializeField] private WheelCollider wheelCollider;
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody rigidbody=null;
     [SerializeField] private float motorValue;
     [SerializeField] private float brakeValue;
 
