@@ -1,15 +1,26 @@
 using System;
+using Interactable;
 using UnityEngine;
 using UnityEngine.Events;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 namespace WheelInput {
+	[CreateAssetMenu(menuName = "WheelChairVR/Input/InputProvider", fileName = "InputProvider", order = 0)]
 	public class InputProvider : ScriptableObject {
 		public HandInputProvider leftHand;
 		public HandInputProvider rightHand;
+
+		public HandInputProvider getHandInputByHand(PlayerHandAxis hand) {
+			return hand switch {
+				PlayerHandAxis.LeftHand => leftHand,
+				PlayerHandAxis.RightHand => rightHand,
+				_ => null
+			};
+		}
 	}
 
+	[CreateAssetMenu(menuName = "WheelChairVR/Input/HandInputProvider", fileName = "HandInputProvider", order = 0)]
 	public class HandInputProvider : ScriptableObject {
 		public bool firstButton;
 		public float firstButtonAnalog;

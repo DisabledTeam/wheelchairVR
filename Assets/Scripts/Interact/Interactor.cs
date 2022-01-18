@@ -1,57 +1,64 @@
 using System;
 using System.Collections.Generic;
+using Interact.Lock;
+using Interactable;
 using UnityEngine;
 using WheelInput;
 
 namespace Interact {
-	public class Interactor : MonoBehaviour {
-		public Mutex mutex;
-		public MutexHolder holder;
-
-		// [SerializeField] private 
+	public class Interactor : LockableMonoBehaviour {
+		[SerializeField] private PlayerHandAxis hand;
 		[SerializeReference] private InputProvider inputProvider;
-		private List<Interactable> clickInteractables = new List<Interactable>();
+		[HideInInspector] public HandInputProvider handInputProvider;
 		
+		//todo: custom interactable condition - custom button etc
+		private List<Interactable> clickInteractables = new List<Interactable>();
+
+		private void Awake() {
+			handInputProvider = inputProvider.getHandInputByHand(hand);
+		}
+
 		private void OnEnable() {
-			// inputProvider.rightHand.firstButton
+			handInputProvider.firstButtonChanged.AddListener(OnInteractButtonChanged);
+		}
+
+		private void OnDisable() {
+			handInputProvider.firstButtonChanged.RemoveListener(OnInteractButtonChanged);
+		}
+
+		private void OnInteractButtonChanged(bool pressed) {
+			foreach (var interactable in clickInteractables) {
+				TryInteract(interactable);
+			}
 		}
 
 		private bool TryInteract(Interactable withInteractable) {
-			var interactorCondition = 
+			var interactorCondition =
 				!withInteractable.interactorNeedToBeFreeToInteract || // Должна ли рука быть свободной?  
-				!mutex.busy;  // Свободна ли рука?
-			
-			var interactableCondition = 
+				!GetLock(); // Свободна ли рука?
+
+			var interactableCondition =
 				!withInteractable.interactableNeedToBeFreeToInteract || // Должен ли предметь быть свободным?  
-				!withInteractable.mutex.busy;  // Свободен ли предмет?
+				!withInteractable.GetLock(); // Свободен ли предмет?
 
-			if (!withInteractable.interactorNeedToBeClickedToInteract) {
-				// Клик не требуется для взаимодействия
-				if (!interactorCondition || !interactableCondition) return false;
-				withInteractable.OnInteract(this);
-			} else {
-				// Нужен клик - отложим до лучших времен
-				clickInteractables.Add(withInteractable);
-			}
-
+			if (!interactorCondition || !interactableCondition) return false;
+			withInteractable.OnInteract(this);
 			return true;
-
 		}
 
 		private void OnTriggerEnter(Collider other) {
 			if (!other.TryGetComponent<Interactable>(out var interactable)) return;
 			interactable.OnTouch(this);
-			TryInteract(interactable);
+
+			if (interactable.interactorNeedToBeClickedToInteract)
+				clickInteractables.Add(interactable);
+			else TryInteract(interactable);
 		}
 
 		private void OnTriggerExit(Collider other) {
 			if (!other.TryGetComponent<Interactable>(out var interactable)) return;
 			interactable.OnTouchEnd(this);
 			clickInteractables.Remove(interactable);
-		}
-
-		private void Update() {
-			
 		}
 	}
 }
