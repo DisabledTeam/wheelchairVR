@@ -5,60 +5,75 @@ using Interactable;
 using UnityEngine;
 using WheelInput;
 
-namespace Interact {
-	public class Interactor : LockableMonoBehaviour {
-		[SerializeField] private PlayerHandAxis hand;
-		[SerializeReference] private InputProvider inputProvider;
-		[HideInInspector] public HandInputProvider handInputProvider;
-		
-		//todo: custom interactable condition - custom button etc
-		private List<Interactable> clickInteractables = new List<Interactable>();
+namespace Interact
+{
+    public class Interactor : LockableMonoBehaviour
+    {
+        [SerializeField] private PlayerHandAxis hand;
+        [SerializeReference] private InputProvider inputProvider;
+        [HideInInspector] public HandInputProvider handInputProvider;
 
-		private void Awake() {
-			handInputProvider = inputProvider.getHandInputByHand(hand);
-		}
+        public PlayerHandAxis PlayerHandAxis => hand;
 
-		private void OnEnable() {
-			handInputProvider.firstButtonChanged.AddListener(OnInteractButtonChanged);
-		}
 
-		private void OnDisable() {
-			handInputProvider.firstButtonChanged.RemoveListener(OnInteractButtonChanged);
-		}
+        //todo: custom interactable condition - custom button etc
+        private List<Interactable> clickInteractables = new List<Interactable>();
 
-		private void OnInteractButtonChanged(bool pressed) {
-			foreach (var interactable in clickInteractables) {
-				TryInteract(interactable);
-			}
-		}
+        private void Awake()
+        {
+            handInputProvider = inputProvider.getHandInputByHand(hand);
+        }
 
-		private bool TryInteract(Interactable withInteractable) {
-			var interactorCondition =
-				!withInteractable.interactorNeedToBeFreeToInteract || // Должна ли рука быть свободной?  
-				!GetLock(); // Свободна ли рука?
+        private void OnEnable()
+        {
+            handInputProvider.firstButtonChanged.AddListener(OnInteractButtonChanged);
+        }
 
-			var interactableCondition =
-				!withInteractable.interactableNeedToBeFreeToInteract || // Должен ли предметь быть свободным?  
-				!withInteractable.GetLock(); // Свободен ли предмет?
+        private void OnDisable()
+        {
+            handInputProvider.firstButtonChanged.RemoveListener(OnInteractButtonChanged);
+        }
 
-			if (!interactorCondition || !interactableCondition) return false;
-			withInteractable.OnInteract(this);
-			return true;
-		}
+        private void OnInteractButtonChanged(bool pressed)
+        {
+            foreach (var interactable in clickInteractables)
+            {
+                TryInteract(interactable);
+            }
+        }
 
-		private void OnTriggerEnter(Collider other) {
-			if (!other.TryGetComponent<Interactable>(out var interactable)) return;
-			interactable.OnTouch(this);
+        private bool TryInteract(Interactable withInteractable)
+        {
+            var interactorCondition =
+                !withInteractable.interactorNeedToBeFreeToInteract || // Должна ли рука быть свободной?  
+                !GetLock(); // Свободна ли рука?
 
-			if (interactable.interactorNeedToBeClickedToInteract)
-				clickInteractables.Add(interactable);
-			else TryInteract(interactable);
-		}
+            var interactableCondition =
+                !withInteractable.interactableNeedToBeFreeToInteract || // Должен ли предметь быть свободным?  
+                !withInteractable.GetLock(); // Свободен ли предмет?
 
-		private void OnTriggerExit(Collider other) {
-			if (!other.TryGetComponent<Interactable>(out var interactable)) return;
-			interactable.OnTouchEnd(this);
-			clickInteractables.Remove(interactable);
-		}
-	}
+            if (!interactorCondition || !interactableCondition) return false;
+            withInteractable.OnInteract(this);
+            return true;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.TryGetComponent<Interactable>(out var interactable)) return;
+            interactable.OnTouch(this);
+            if (interactable.interactorNeedToBeClickedToInteract)
+                clickInteractables.Add(interactable);
+            else
+            {
+                TryInteract(interactable);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.TryGetComponent<Interactable>(out var interactable)) return;
+            interactable.OnTouchEnd(this);
+            clickInteractables.Remove(interactable);
+        }
+    }
 }

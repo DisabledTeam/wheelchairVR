@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using WheelInput;
 
 namespace Interactable
 {
@@ -11,22 +12,26 @@ namespace Interactable
         [Header("Monitoring")]
         [SerializeField] private bool isSetted;
         [SerializeField] private HandItemHolder holder;
+        [SerializeField] private HandInputProvider handInputProvider;
+        
+        public UnityEvent<HandInputProvider>  droppedFromHand = new UnityEvent<HandInputProvider> ();
+        public UnityEvent<HandInputProvider> takenInHand = new UnityEvent<HandInputProvider>();
 
-        public UnityAction droppedFromHand;
-        public UnityAction takenInHand;
 
-        public void SetInHolder(HandItemHolder holder)
+        public void SetInHolder(HandItemHolder holder, HandInputProvider handInputProvider)
         {
             isSetted = true;
             this.holder = holder;
-            takenInHand.Invoke();
+            this.handInputProvider = handInputProvider;
+            takenInHand.Invoke(handInputProvider);
         }
 
         public void RemoveFromHolder()
         {
             isSetted = false;
+            droppedFromHand.Invoke(handInputProvider);
             holder = null;
-            droppedFromHand.Invoke();
+            handInputProvider = null;
             if (destroyOnDrop) Destroy(gameObject);
         }
 

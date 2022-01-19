@@ -1,6 +1,10 @@
+using System;
 using System.Collections.Generic;
+using Interact;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
+using WheelInput;
 
 namespace Interactable
 {
@@ -9,6 +13,7 @@ namespace Interactable
         [Header("Pick up Settings")]
         [SerializeField] private bool needDestroyOnDrop;
         [SerializeField] private bool needSwapScripts;
+        [SerializeField] private PlayerHandPickUpChannel pickUpChannel;
 
 
         [Header("Links")]
@@ -25,20 +30,24 @@ namespace Interactable
         [Header("Monitoring")]
         [SerializeField] private bool isPickedUp;
 
+
+        public UnityEvent<PlayerHandAxis, HandInputProvider> PickedUp =
+            new UnityEvent<PlayerHandAxis, HandInputProvider>();
+
         public bool IsPickedUp => isPickedUp;
         public HandItem HandItem => handItem;
 
         private static readonly int PickedUpAnimatorBool = Animator.StringToHash("PickedUp");
 
 
-        public PickUpHandInfo PickUp(PlayerHandAxis handAxis)
+        public PickUpHandInfo PickUp(PlayerHandAxis handAxis, HandInputProvider handInputProvider)
         {
-            var info = new PickUpHandInfo(this, handAxis, interactable);
+            var info = new PickUpHandInfo(this, handAxis, handInputProvider, interactable);
             ViewPickUp();
 
             if (needSwapScripts) SwapScripts(true);
             isPickedUp = true;
-
+            PickedUp.Invoke(handAxis, handInputProvider);
             return info;
         }
 
@@ -52,8 +61,8 @@ namespace Interactable
         private void SwapScripts(bool onPickUp)
         {
             pickUpObject.PickUp();
-            pickUpObject.gameObject.SetActive(onPickUp);
-            handItem.gameObject.SetActive(!onPickUp);
+            pickUpObject.gameObject.SetActive(!onPickUp);
+            handItem.gameObject.SetActive(onPickUp);
         }
 
 
@@ -70,9 +79,9 @@ namespace Interactable
             }
         }
 
-        public void SetInHolder(HandItemHolder holder)
+        public void SetInHolder(HandItemHolder holder, HandInputProvider handInputProvider)
         {
-            handItem.SetInHolder(holder);
+            handItem.SetInHolder(holder, handInputProvider);
         }
 
         public void RemoveFromHolder()
@@ -84,6 +93,22 @@ namespace Interactable
         public Transform GetTransform()
         {
             return transform;
+        }
+
+        private void OnEnable()
+        {
+            interactable.InteractableInteracted.AddListener(OnInteract);
+        }
+
+        private void OnDisable()
+        {
+            interactable.InteractableInteracted.RemoveListener(OnInteract);
+        }
+
+        private void OnInteract(InteractableInteractedEventArgs arg0)
+        {
+            var info = PickUp(arg0.interactor.PlayerHandAxis, arg0.interactor.handInputProvider);
+            pickUpChannel.InvokeNewPickUp(info);
         }
     }
 }

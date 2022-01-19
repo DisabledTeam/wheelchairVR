@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using InspectorButton;
 using UnityEngine;
 
 [AddComponentMenu("Nokobot/Modern Guns/Simple Shoot")]
+[InspectorButtonClass]
 public class SimpleShoot : MonoBehaviour
 {
     [Header("Prefab Refrences")]
@@ -40,7 +42,8 @@ public class SimpleShoot : MonoBehaviour
 
 
     //This function creates the bullet behavior
-    void Shoot()
+    [InspectorButton("Shoot")]
+    public void Shoot()
     {
         if (muzzleFlashPrefab)
         {

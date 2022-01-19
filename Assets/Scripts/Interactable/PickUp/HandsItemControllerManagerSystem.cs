@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Interact;
 using UnityEngine;
+using WheelInput;
 
 namespace Interactable
 {
@@ -17,7 +19,8 @@ namespace Interactable
         [Header("Monitoring")]
         [SerializeField] private Interact.Interactable leftInteractable;
         [SerializeField] private Interact.Interactable rightInteractable;
-
+        [SerializeField]
+        private List<HolderProviderCombination> _combinations;
 
         public bool IsLeftHandEmpty => leftHolder.IsEmpty;
         public bool IsRightHandEmpty => rightHolder.IsEmpty;
@@ -43,11 +46,19 @@ namespace Interactable
             var axis = info.HandAxis;
             var selectedHolder = GetHolder(axis);
             if (!selectedHolder.IsEmpty) DeEquipPickUp(axis);
-            selectedHolder.SetUpItem(info.UsedPickUp.HandItem);
-            GetInteractor(axis);
-            SetInteractable(axis, info.Interactable);
-            //TODO   GetInteractor(axis).Lock();
-            //TODO  info.Interactable.Lock();
+            selectedHolder.SetUpItem(info.UsedPickUp, info.HandInputProvider);
+            GetInteractor(axis).Lock();
+            SetInteractable(axis, info.Interactable).Lock();
+
+            _combinations.Add(new HolderProviderCombination(selectedHolder, info.HandInputProvider, this, axis));
+        }
+
+
+        public void DeEquipPickUp(HolderProviderCombination combination)
+        {
+            DeEquipPickUp(combination.PlayerHandAxis);
+            combination.Deconstruct();
+            _combinations.Remove(combination);
         }
 
 
@@ -59,10 +70,11 @@ namespace Interactable
             var interactable = GetInteractable(axis);
             if (interactable)
             {
-                //TODO   GetInteractable(axis).UnLock();
+                GetInteractable(axis).Unlock();
                 SetInteractable(axis, null);
             }
-            //TODO   GetInteractor(axis).UnLock();
+
+            GetInteractor(axis).Unlock();
         }
 
         private HandItemHolder GetHolder(PlayerHandAxis axis)
@@ -114,6 +126,40 @@ namespace Interactable
 
             ;
             return interactable;
+        }
+    }
+
+
+    [Serializable]
+    public class HolderProviderCombination
+    {
+        public HandItemHolder HandItemHolder;
+        public HandInputProvider HandInputProvider;
+        public HandsItemControllerManagerSystem HandsItemControllerManagerSystem;
+        public PlayerHandAxis PlayerHandAxis;
+
+        public HolderProviderCombination(HandItemHolder handItemHolder, HandInputProvider handInputProvider,
+            HandsItemControllerManagerSystem handsItemControllerManagerSystem, PlayerHandAxis playerHandAxis)
+        {
+            HandItemHolder = handItemHolder;
+            HandInputProvider = handInputProvider;
+            HandsItemControllerManagerSystem = handsItemControllerManagerSystem;
+            PlayerHandAxis = playerHandAxis;
+
+            HandInputProvider.secondButtonChanged.AddListener(OnSecondButtonChanged);
+        }
+
+        public void Deconstruct()
+        {
+            HandInputProvider.secondButtonChanged.RemoveListener(OnSecondButtonChanged);
+        }
+
+        public void OnSecondButtonChanged(bool arg0)
+        {
+            if (arg0 == false)
+            {
+                HandsItemControllerManagerSystem.DeEquipPickUp(this);
+            }
         }
     }
 }
