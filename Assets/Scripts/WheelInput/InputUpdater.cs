@@ -51,11 +51,17 @@ namespace WheelInput
             SteamVR_Input.GetActionSets().ForEach(actionSet => {
                 Debug.Log(actionSet.fullPath);
                 actionSet.Activate(SteamVR_Input_Sources.Any, 0, false);
+                actionSet.Activate(leftHand, 0, false);
+                actionSet.Activate(rightHand, 0, false);
             });
 
             firstButton.onChange += 
                 (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) 
                     => {
+                    Debug.Log("firstButton.onChange");
+                    Debug.Log("fromSource == leftHand"+ (fromSource == leftHand));
+                    Debug.Log("fromSource == rightHand"+ (fromSource == rightHand));
+                    Debug.Log("fromSource"+ (fromSource));
                     if(fromSource == leftHand) inputProvider.leftHand.firstButtonChanged.Invoke(newState);
                     else if(fromSource == rightHand) inputProvider.rightHand.firstButtonChanged.Invoke(newState);
                 };
