@@ -24,13 +24,12 @@ namespace Wheels
             this.wheelSpawner = wheelSpawner;
         }
 
-        public void RespawnWheel(WheelConfig wheelConfig, WheelSpotSite spotSite)
+        public void SpawnWheel(WheelConfig wheelConfig, WheelSpotSite spotSite)
         {
             WheelSpot wheelSpot = GetWheelSpot(spotSite);
             if (!wheelSpot.IsEmpty)
             {
-                var detachInfo = Detach(spotSite);
-                wheelSpot.MoveDropItem(detachInfo.detachObject.gameObject);
+                throw new Exception("Нельзя заспавнить уже есть колесо в этом споте");
             }
 
             var spawnNewWheel = wheelSpawner.SpawnNewWheel(wheelConfig);
@@ -49,19 +48,23 @@ namespace Wheels
             WheelSpot wheelSpot = GetWheelSpot(spotSite);
 
             var detachInfo = Detach(wheelSpot);
-            WheelDetached.Invoke(new WheelDetachedEventArgs(detachInfo, spotSite, onReplace));
-            return detachInfo;
-        }
 
-        public DetachInfo Detach(WheelSpotSite spotSite)
-        {
-            return Detach(spotSite, false);
+            if (!onReplace)
+            {
+                var respawnConfig = wheelChair.DefaultWheel;
+                if (detachInfo.wheelConfig.IsInfinite) respawnConfig = detachInfo.wheelConfig;
+                SpawnWheel(respawnConfig,spotSite);
+            }
+            
+            WheelDetached.Invoke(new WheelDetachedEventArgs(detachInfo, spotSite, onReplace));
+            
+            return detachInfo;
         }
 
         public void Attach(DetachedWheel detachedWheel, WheelSpotSite spotSite)
         {
-            Debug.Log($"detachedWheel.detachInfo.wheelConfig: {detachedWheel.detachInfo.wheelConfig}");
-            GetWheelSpot(spotSite).SetWheel(detachedWheel.detachInfo.wheelRoot, detachedWheel.detachInfo.wheelConfig);
+            Debug.Log($"detachedWheel.detachInfo.wheelConfig: {detachedWheel.DetachInfo.wheelConfig}");
+            GetWheelSpot(spotSite).SetWheel(detachedWheel.DetachInfo.wheelRoot, detachedWheel.DetachInfo.wheelConfig);
         }
 
         private DetachInfo Detach(WheelSpot spot)
@@ -70,7 +73,8 @@ namespace Wheels
             Debug.Log($"Detach Info: {detachInfo}");
             Debug.Log($"Detach Info: {detachInfo.wheelConfig}");
             detachInfo.detachObject = detachInfo.wheelConfig.InstantiateDetachObject(detachInfo);
-
+            spot.MoveDropItem(detachInfo.detachObject.gameObject);
+            
             return detachInfo;
         }
 

@@ -37,10 +37,6 @@ namespace DefaultNamespace
 
         private void OnWheelDetached(WheelDetachedEventArgs arg0)
         {
-            if (arg0.happanedOnReplace) return;
-            var respawnConfig = defaultWheel;
-            if (arg0.detachInfo.wheelConfig.IsInfinite) respawnConfig = arg0.detachInfo.wheelConfig;
-            wheelAxis.RespawnWheel(respawnConfig,arg0.spotSite);
         }
 
         private void CheckSpawnNewWheel()
