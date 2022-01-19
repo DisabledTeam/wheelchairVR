@@ -5,17 +5,19 @@ using Valve.VR;
 
 namespace Wheels {
 	public class DetachedWheel : MonoBehaviour {
-		public DetachInfo detachInfo;
+		public DetachInfo DetachInfo;
 
 		public void Init(DetachInfo detachInfo) {
-			if (this.detachInfo.wheelRoot != null)
+			
+			if (this.DetachInfo.wheelRoot != null)
 			{
-				Destroy(this.detachInfo.wheelRoot.gameObject);
+				Destroy(this.DetachInfo.wheelRoot.gameObject);
 			}
-			this.detachInfo = detachInfo;
-			detachInfo.detachObject = this;
-			detachInfo.wheelRoot.transform.SetParent(transform); // блять
-			detachInfo.wheelRoot.gameObject.SetActive(false); // вью новый на детаче
+			
+			DetachInfo = detachInfo;
+			DetachInfo.detachObject = this;
+			DetachInfo.wheelRoot.transform.SetParent(transform,false); // блять
+			DetachInfo.wheelRoot.gameObject.SetActive(false); // вью новый на детаче
 		}
 	}
 }

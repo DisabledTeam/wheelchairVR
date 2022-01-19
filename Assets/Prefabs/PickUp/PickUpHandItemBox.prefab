@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 5519568455845789640}
   - component: {fileID: 4959346580483611122}
   - component: {fileID: 4959346580483611125}
+  - component: {fileID: 3561099818799668424}
   m_Layer: 0
   m_Name: PickUpHandItemBox
   m_TagString: Untagged
@@ -205,6 +206,23 @@ MonoBehaviour:
   _pickUpHandItem: {fileID: 5519568455845789643}
   _rigidbody: {fileID: 5519568455845789640}
   velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &3561099818799668424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519568455845789686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a92f27e87f84efa8868b0433119b634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  destroyOnDamage: 1
+  destroyOnCollide: 0
+  destroyParticles: {fileID: 198330214428362902, guid: 55a1b147cc22fdd40aa3bf455753ea3c,
+    type: 3}
 --- !u!1 &5519568456119196942
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,8 +293,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 64066660036517890, guid: e082979a473bb914ab8af10a5d754993, type: 3}
+    - target: {fileID: 64066660036517890, guid: e082979a473bb914ab8af10a5d754993,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e082979a473bb914ab8af10a5d754993, type: 3}
 --- !u!4 &7495112874792828162 stripped
 Transform:

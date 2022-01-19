@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 1
   attackDamage: 10
-  attackRange: 1
+  attackRange: 1.84
   health: {fileID: 1814000309965956185}
   stateMachine: {fileID: 1814000310218057363}
   player: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needToAttachToTransform: 0
-  standartFloatingText: {fileID: 6599393868611813029, guid: bb101db63f132f141806ddf925ec41a7,
+  standartFloatingText: {fileID: 6599393868611813029, guid: 0d146a0142281234b8f937a8bea42e45,
     type: 3}
   criticalFloatingText: {fileID: 6599393868611813029, guid: ed1e53c8e69cb62419bda9bcbd92d0a5,
     type: 3}
