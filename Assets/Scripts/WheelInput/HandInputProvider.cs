@@ -3,40 +3,70 @@ using InspectorButton;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace WheelInput
-{
-    [CreateAssetMenu(menuName = "WheelChairVR/Input/HandInputProvider", fileName = "HandInputProvider", order = 0)]
-    [InspectorButtonClass]
-    public class HandInputProvider : ScriptableObject
-    {
-        public bool firstButton;
-        public float firstButtonAnalog;
-        public bool secondButton;
-        public bool joystickTouch;
-        public Vector2 joyStick;
+namespace WheelInput {
+	[CreateAssetMenu(menuName = "WheelChairVR/Input/HandInputProvider", fileName = "HandInputProvider", order = 0)]
+	[InspectorButtonClass]
+	public class HandInputProvider : ScriptableObject {
+		private bool _firstButton;
 
-        /* -- */
+		public bool firstButton {
+			get => _firstButton;
+			set {
+				if (_firstButton != value) internal_firstButtonChanged.Invoke(value);
+				_firstButton = value;
+			}
+		}
 
-        public UnityEvent<bool> firstButtonChanged = new UnityEvent<bool>();
-        public UnityEvent<bool> secondButtonChanged = new UnityEvent<bool>();
-        public UnityEvent<bool> joystickTouchChanged = new UnityEvent<bool>();
+		public float firstButtonAnalog;
 
-        [InspectorButton("FakeFirstButtonChangedTrue")]
-        public void FakeFirstButtonChangedTrue() => firstButtonChanged.Invoke(true);
+		private bool _secondButton;
 
-        [InspectorButton("FakeFirstButtonChangedFalse")]
-        public void FakeFirstButtonChangedFalse() => firstButtonChanged.Invoke(false);
+		public bool secondButton {
+			get => _secondButton;
+			set {
+				if (_secondButton != value) internal_secondButtonChanged.Invoke(value);
+				_secondButton = value;
+			}
+		}
 
-        [InspectorButton("FakeSecondButtonChangedTrue")]
-        public void FakeSecondButtonChangedTrue() => secondButtonChanged.Invoke(true);
+		private bool _joystickTouch;
 
-        [InspectorButton("FakeSecondButtonChangedFalse")]
-        public void FakeSecondButtonChangedFalse() => secondButtonChanged.Invoke(false);
+		public bool joystickTouch {
+			get => _joystickTouch;
+			set {
+				if (_joystickTouch != value) internal_joystickTouchChanged.Invoke(value);
+				_joystickTouch = value;
+			}
+		}
 
-        [InspectorButton("FakeJoystickTouchChangedTrue")]
-        public void FakeJoystickTouchChangedTrue() => joystickTouchChanged.Invoke(true);
+		public Vector2 joyStick;
 
-        [InspectorButton("FakeJoystickTouchChangedFalse")]
-        public void FakeJoystickTouchChangedFalse() => joystickTouchChanged.Invoke(false);
-    }
+		/* -- */
+
+		public UnityEvent<bool> internal_firstButtonChanged = new UnityEvent<bool>();
+		public UnityEvent<bool> internal_secondButtonChanged = new UnityEvent<bool>();
+		public UnityEvent<bool> internal_joystickTouchChanged = new UnityEvent<bool>();
+
+		public UnityEvent<bool> firstButtonChanged = new UnityEvent<bool>();
+		public UnityEvent<bool> secondButtonChanged = new UnityEvent<bool>();
+		public UnityEvent<bool> joystickTouchChanged = new UnityEvent<bool>();
+
+		[InspectorButton("FakeFirstButtonChangedTrue")]
+		public void FakeFirstButtonChangedTrue() => firstButtonChanged.Invoke(true);
+
+		[InspectorButton("FakeFirstButtonChangedFalse")]
+		public void FakeFirstButtonChangedFalse() => firstButtonChanged.Invoke(false);
+
+		[InspectorButton("FakeSecondButtonChangedTrue")]
+		public void FakeSecondButtonChangedTrue() => secondButtonChanged.Invoke(true);
+
+		[InspectorButton("FakeSecondButtonChangedFalse")]
+		public void FakeSecondButtonChangedFalse() => secondButtonChanged.Invoke(false);
+
+		[InspectorButton("FakeJoystickTouchChangedTrue")]
+		public void FakeJoystickTouchChangedTrue() => joystickTouchChanged.Invoke(true);
+
+		[InspectorButton("FakeJoystickTouchChangedFalse")]
+		public void FakeJoystickTouchChangedFalse() => joystickTouchChanged.Invoke(false);
+	}
 }
