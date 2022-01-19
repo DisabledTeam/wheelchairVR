@@ -25,7 +25,7 @@ public class SimpleShoot : MonoBehaviour
     [Tooltip("Casing Ejection Speed")] [SerializeField]
     private float ejectPower = 150f;
 
-
+    [InspectorButton("TriggerShoot")]
     public void TriggerShoot()
     {
         gunAnimator.SetTrigger("Fire");

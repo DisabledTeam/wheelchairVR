@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace HealthBar
 {
-    //TODO Мрак
-    [RequireComponent(typeof(TextMesh))]
+    
     public class FloatingDamage : UnityEngine.MonoBehaviour
     {
-        private TextMesh _damageLabel;
+
+        [SerializeField] private TextMeshProUGUI _damageLabel;
+        
         public float destroyTime = 3f;
         public float upSpeed = 3;
         public Vector3 spawnPositionRandomizeIntencivity;
@@ -37,7 +39,6 @@ namespace HealthBar
 
         private void Awake()
         {
-            _damageLabel = GetComponent<TextMesh>();
             _cameraTransform = Camera.main.transform;
             _transform = transform;
         }
