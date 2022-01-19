@@ -13,10 +13,10 @@ namespace Wheels {
 			
 			inventory.TryDeEquipHandItem(detachedWheelCatch.pickUp);
 			if (wheelAxis.CanDetach(spotSite))
-				wheelAxis.Detach(spotSite);
+				wheelAxis.Detach(spotSite, true);
 			
 			wheelAxis.Attach(detachedWheelCatch.detachedWheel, spotSite);
-			Destroy(detachedWheelCatch);
+			Destroy(detachedWheelCatch.detachedWheel.gameObject);
 		}
 	}
 }

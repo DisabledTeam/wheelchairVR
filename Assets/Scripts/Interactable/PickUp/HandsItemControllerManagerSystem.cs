@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Interact;
 using UnityEngine;
 using WheelInput;
@@ -63,9 +64,9 @@ namespace Interactable
 
         public void TryDeEquipHandItem(IHandItem handItem)
         {
-            foreach (var combination in _combinations)
+            foreach (var combination in _combinations.ToList())
             {
-                if (combination.GetHandItem() == handItem) DeEquipPickUp(combination);
+                if(combination.GetHandItem()==handItem) DeEquipPickUp(combination);
             }
         }
 

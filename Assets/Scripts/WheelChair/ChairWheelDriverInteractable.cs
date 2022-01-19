@@ -53,10 +53,10 @@ namespace WheelChair
                 var trueMovementVector = movementVector; // _transform.TransformVector(movementVector).normalized;
                 var trueDelta = Vector3.Dot(delta, trueMovementVector);
                 rawLinearSpeed = trueDelta / Time.deltaTime;
-                Debug.Log(
-                    $"delta: {delta}, " +
-                    $"trueDelta: {trueDelta}, " +
-                    $"linearSpeed: {rawLinearSpeed}");
+                // Debug.Log(
+                //     $"delta: {delta}, " +
+                //     $"trueDelta: {trueDelta}, " +
+                //     $"linearSpeed: {rawLinearSpeed}");
             }
             lastHandPosition = position;
         }

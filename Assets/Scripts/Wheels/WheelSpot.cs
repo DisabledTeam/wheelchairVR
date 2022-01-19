@@ -26,6 +26,7 @@ namespace DefaultNamespace
             if (this.wheelRoot != null) throw new Exception("Чел тут уже есть колесо");
 
             wheelRoot.transform.SetParent(wheelParentPoint, false);
+            wheelRoot.gameObject.SetActive(true); // KOSTYL
             this.wheelRoot = wheelRoot;
             this.wheelConfig = wheelConfig;
             isEmpty = false;

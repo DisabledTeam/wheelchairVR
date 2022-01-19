@@ -8,8 +8,13 @@ namespace Wheels {
 		public DetachInfo detachInfo;
 
 		public void Init(DetachInfo detachInfo) {
+			if (this.detachInfo.wheelRoot != null)
+			{
+				Destroy(this.detachInfo.wheelRoot.gameObject);
+			}
 			this.detachInfo = detachInfo;
-			detachInfo.wheelRoot.transform.parent = transform; // блять
+			detachInfo.detachObject = this;
+			detachInfo.wheelRoot.transform.SetParent(transform); // блять
 			detachInfo.wheelRoot.gameObject.SetActive(false); // вью новый на детаче
 		}
 	}
