@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Wheels;
 
 namespace DefaultNamespace
 {
@@ -15,7 +16,7 @@ namespace DefaultNamespace
 
         public bool IsEmpty => isEmpty;
 
-        public void DropItem(GameObject drop)
+        public void MoveDropItem(GameObject drop)
         {
             drop.transform.position = dropItemsPoint.position;
         }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using Wheels;
 
 namespace DefaultNamespace
 {
@@ -7,7 +8,7 @@ namespace DefaultNamespace
     {
         [Header("Links")]
         public WheelRoot WheelRootPrefab;
-        public GameObject DetachPrefab;
+        public DetachedWheel DetachPrefab;
 
         [Header("Settings")]
         public string WheelName;
@@ -21,9 +22,10 @@ namespace DefaultNamespace
             return wheelRoot;
         }
 
-        public GameObject InstantiateDetachObject()
+        public DetachedWheel InstantiateDetachObject(DetachInfo detachInfo)
         {
             var newDetach = Instantiate(DetachPrefab);
+            newDetach.Init(detachInfo);
             return newDetach;
         }
     }
