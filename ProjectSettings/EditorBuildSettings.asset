@@ -4,7 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/ManagerScenes.unity
+    guid: 57f2f9fbe948dd14d80a196f32c41860
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/MoveShootScene.unity
+    guid: b12f3fd644547a84896c94e803ebe619
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/GunScene.unity
+    guid: cfda9f3cdebea774bb70c103bdf15a11
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/MoveScene.unity
+    guid: dd764f720c4f67842a0beafcd3bfacdd
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

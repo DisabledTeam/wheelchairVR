@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 366231342}
   - component: {fileID: 366231341}
   - component: {fileID: 366231344}
+  - component: {fileID: 8374170266217001863}
   m_Layer: 11
   m_Name: DefaultWheelDetached
   m_TagString: Untagged
@@ -433,6 +434,24 @@ MonoBehaviour:
   _pickUpHandItem: {fileID: 4000793220148767264}
   _rigidbody: {fileID: 366231342}
   velocity: {x: 0, y: 0, z: 0}
+--- !u!114 &8374170266217001863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4000793220148767275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a92f27e87f84efa8868b0433119b634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackerTeam: 0
+  damage: 10
+  destroyOnDamage: 1
+  destroyOnCollide: 0
+  destroyParticles: {fileID: 198499209413112314, guid: 9c67d8fa09e0ada4bbb407c0194ea04a,
+    type: 3}
 --- !u!1 &4000793221764598235
 GameObject:
   m_ObjectHideFlags: 0

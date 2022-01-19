@@ -4,8 +4,16 @@ using UnityEngine;
 
 namespace Fight
 {
+    public enum Team
+    {
+        Player,
+        Enemy
+    }
+
     public class Damager : MonoBehaviour
     {
+        [Header("Settings")]
+        [SerializeField] private Team attackerTeam = Team.Player;
         [SerializeField] private float damage;
         [SerializeField] private bool destroyOnDamage;
         [SerializeField] private bool destroyOnCollide;
@@ -16,7 +24,8 @@ namespace Fight
         {
             if (other.gameObject.TryGetComponent<Health>(out var health))
             {
-                health.GetDamage(damage);
+                if (health.Team != attackerTeam) health.GetDamage(damage);
+                else return;
                 if (destroyOnDamage) DestroyView();
             }
 

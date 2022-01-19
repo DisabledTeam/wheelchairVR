@@ -12,11 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc235afd519f0264a8929d461910d082, type: 3}
   m_Name: LeftHandInputProvider
   m_EditorClassIdentifier: 
-  firstButton: 0
+  _firstButton: 0
   firstButtonAnalog: 0
-  secondButton: 0
-  joystickTouch: 0
+  _secondButton: 0
+  _joystickTouch: 0
   joyStick: {x: 0, y: 0}
+  internal_firstButtonChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  internal_secondButtonChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  internal_joystickTouchChanged:
+    m_PersistentCalls:
+      m_Calls: []
   firstButtonChanged:
     m_PersistentCalls:
       m_Calls: []

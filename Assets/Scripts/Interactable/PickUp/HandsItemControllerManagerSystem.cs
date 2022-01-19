@@ -25,6 +25,7 @@ namespace Interactable
 
         public bool IsLeftHandEmpty => leftHolder.IsEmpty;
         public bool IsRightHandEmpty => rightHolder.IsEmpty;
+        public bool IsHandEmpty(PlayerHandAxis axis) => GetHolder(axis).IsEmpty;
 
 
         private void OnEnable()

@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e76649cf78c1384b9a3a08a9a085c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 1
   needDestroyOnDie: 1
   needHealthBar: 1
   healthBar: {fileID: 8635808231651567518}

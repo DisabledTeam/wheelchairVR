@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5519568455066208783}
   - component: {fileID: 5519568455066208768}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HandItemScripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5519568455475112705}
   - component: {fileID: 5519568455475112706}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PickUpScripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,8 @@ GameObject:
   - component: {fileID: 4959346580483611122}
   - component: {fileID: 4959346580483611125}
   - component: {fileID: 3561099818799668424}
-  m_Layer: 0
+  - component: {fileID: 8363166935236010879}
+  m_Layer: 11
   m_Name: PickUpHandItemBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +191,7 @@ MonoBehaviour:
   _lock: 0
   interactableNeedToBeFreeToInteract: 1
   interactorNeedToBeFreeToInteract: 1
-  interactorNeedToBeClickedToInteract: 0
+  interactorNeedToBeClickedToInteract: 1
 --- !u!114 &4959346580483611125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,11 +219,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a92f27e87f84efa8868b0433119b634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackerTeam: 0
   damage: 50
   destroyOnDamage: 1
   destroyOnCollide: 0
   destroyParticles: {fileID: 198330214428362902, guid: 55a1b147cc22fdd40aa3bf455753ea3c,
     type: 3}
+--- !u!65 &8363166935236010879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519568455845789686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.34498125, y: 0.33680826, z: 0.3342859}
+  m_Center: {x: 0.0016418397, y: -0.0035571158, z: 0.019480735}
 --- !u!1 &5519568456119196942
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5519568456119196943}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,6 +276,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5519568456119196943}
     m_Modifications:
+    - target: {fileID: 1681651414697798, guid: e082979a473bb914ab8af10a5d754993, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4315301396323988, guid: e082979a473bb914ab8af10a5d754993, type: 3}
       propertyPath: m_RootOrder
       value: 0

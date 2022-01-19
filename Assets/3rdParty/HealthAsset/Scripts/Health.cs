@@ -1,4 +1,5 @@
 ﻿using System;
+using Fight;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,6 +18,7 @@ namespace HealthBar
     [RequireComponent(typeof(DamagePopUpper))]
     public class Health : MonoBehaviour
     {
+        [SerializeField] private Team team = Team.Enemy;
         public bool needDestroyOnDie = true;
         [HideInInspector] public bool needHealthBar = true;
         [HideInInspector] public HealthBar healthBar;
@@ -27,6 +29,8 @@ namespace HealthBar
         [SerializeField] private float maxHealthPoints;
         [SerializeField] private float currentHealthPoints;
 
+
+        public Team Team => team;
 
         public DamageGottenEvent damageGottenEvent = new DamageGottenEvent();
         public DieEvent dieEvent = new DieEvent();

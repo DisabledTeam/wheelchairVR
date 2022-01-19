@@ -48,6 +48,7 @@ namespace Interactable
             if (needSwapScripts) SwapScripts(true);
             isPickedUp = true;
             PickedUp.Invoke(handAxis, handInputProvider);
+            pickUpChannel.InvokeNewPickUp(info);
             return info;
         }
 
@@ -108,7 +109,7 @@ namespace Interactable
         private void OnInteract(InteractableInteractedEventArgs arg0)
         {
             var info = PickUp(arg0.interactor.PlayerHandAxis, arg0.interactor.handInputProvider);
-            pickUpChannel.InvokeNewPickUp(info);
+           
         }
     }
 }

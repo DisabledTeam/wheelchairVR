@@ -93,9 +93,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a92f27e87f84efa8868b0433119b634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackerTeam: 0
   damage: 10
   destroyOnDamage: 1
   destroyOnCollide: 1
+  destroyParticles: {fileID: 19800002, guid: dfc6c5578352697428ae41183e0c0dc4, type: 3}
 --- !u!1001 &7799836738284049863
 PrefabInstance:
   m_ObjectHideFlags: 0

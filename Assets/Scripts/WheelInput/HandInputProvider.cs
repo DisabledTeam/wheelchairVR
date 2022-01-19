@@ -7,8 +7,10 @@ namespace WheelInput {
 	[CreateAssetMenu(menuName = "WheelChairVR/Input/HandInputProvider", fileName = "HandInputProvider", order = 0)]
 	[InspectorButtonClass]
 	public class HandInputProvider : ScriptableObject {
-		private bool _firstButton;
+		
+		[SerializeField] private bool _firstButton;
 
+		
 		public bool firstButton {
 			get => _firstButton;
 			set {
@@ -19,7 +21,7 @@ namespace WheelInput {
 
 		public float firstButtonAnalog;
 
-		private bool _secondButton;
+		[SerializeField] private bool _secondButton;
 
 		public bool secondButton {
 			get => _secondButton;
@@ -29,7 +31,7 @@ namespace WheelInput {
 			}
 		}
 
-		private bool _joystickTouch;
+		[SerializeField] private bool _joystickTouch;
 
 		public bool joystickTouch {
 			get => _joystickTouch;
