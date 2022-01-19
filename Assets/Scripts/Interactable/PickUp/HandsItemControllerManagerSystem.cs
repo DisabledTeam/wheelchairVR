@@ -61,6 +61,14 @@ namespace Interactable
             _combinations.Remove(combination);
         }
 
+        public void TryDeEquipHandItem(IHandItem handItem)
+        {
+            foreach (var combination in _combinations)
+            {
+                if (combination.GetHandItem() == handItem) DeEquipPickUp(combination);
+            }
+        }
+
 
         private void DeEquipPickUp(PlayerHandAxis axis)
         {
@@ -160,6 +168,11 @@ namespace Interactable
             {
                 HandsItemControllerManagerSystem.DeEquipPickUp(this);
             }
+        }
+
+        public IHandItem GetHandItem()
+        {
+            return HandItemHolder.CurrentHandItem;
         }
     }
 }

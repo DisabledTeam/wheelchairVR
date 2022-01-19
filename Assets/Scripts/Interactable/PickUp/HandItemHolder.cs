@@ -13,6 +13,8 @@ namespace Interactable
         [SerializeField] private bool isEmpty = true;
         [SerializeField] private IHandItem currentHandItem;
 
+
+        public IHandItem CurrentHandItem => currentHandItem;
         public bool IsEmpty => isEmpty;
 
         public void SetUpItem(IHandItem handItem, HandInputProvider handInputProvider)
