@@ -53,9 +53,7 @@ namespace WheelChair
             
             var linearSpeed = (leftWheelTransform.forward * leftWheelDriver.speed + rightWheelTransform.forward * rightWheelDriver.speed) / 2 * multiplier;
             linearSpeed.Scale(msk);
-                
-            var upSpeed = rb.velocity;
-            Vector3.Scale(upSpeed, absUp);
+            var upSpeed = Vector3.Scale(rb.velocity, absUp);
             
             if (AngularKostylRequired()) return upSpeed + linearSpeed * 2; // Удвоенная скорость вперед, если нет вращения
             return upSpeed + linearSpeed;
@@ -68,9 +66,8 @@ namespace WheelChair
             
             rb.velocity = GetKostylLinearSpeed(); // linear speed - linear speed = linear speed
             var controllableAngularVelocity = GetKostylAngularSpeed() * trueUp; // linear speed to radians per second
-            var oldAngularMasked = rb.angularVelocity;
-            Vector3.Scale(oldAngularMasked, msk);
-            rb.angularVelocity = controllableAngularVelocity;
+            var oldAngularMasked = Vector3.Scale(rb.angularVelocity, msk);
+            rb.angularVelocity = oldAngularMasked+controllableAngularVelocity;
             // Debug.Log($"TrueUp: {trueUp}, controllableAngularVelocity: {controllableAngularVelocity}");
         }
 
