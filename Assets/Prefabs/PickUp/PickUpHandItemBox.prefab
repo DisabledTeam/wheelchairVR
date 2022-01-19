@@ -110,7 +110,6 @@ GameObject:
   - component: {fileID: 5519568455845789640}
   - component: {fileID: 4959346580483611122}
   - component: {fileID: 4959346580483611125}
-  - component: {fileID: 4975638644539487131}
   m_Layer: 0
   m_Name: PickUpHandItemBox
   m_TagString: Untagged
@@ -205,20 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickUpHandItem: {fileID: 5519568455845789643}
   _rigidbody: {fileID: 5519568455845789640}
---- !u!64 &4975638644539487131
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5519568455845789686}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 2d56fe2ad841a4f429c64626c08eaae5, type: 3}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &5519568456119196942
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,69 +3,86 @@ using Attributes;
 using Interact;
 using UnityEngine;
 
-namespace WheelChair {
-	[RequireComponent(typeof(Interact.Interactable))]
-	public class ChairWheelDriverInteractable : MonoBehaviour {
-		[SerializeField] private Vector3 movementVector = Vector3.forward;
-		private Interact.Interactable interactable;
+namespace WheelChair
+{
+    [RequireComponent(typeof(Interact.Interactable))]
+    public class ChairWheelDriverInteractable : MonoBehaviour
+    {
+        [SerializeField] private Vector3 movementVector = Vector3.forward;
 
-		private Transform _transform;
-		private Interactor interactor;
+        private Interact.Interactable interactable;
 
-		private Transform handTransform;
-		private Vector3 lastHandPosition;
+        private Transform _transform;
+        private Interactor interactor;
 
-		public float linearSpeed { get; private set; }
+        private Transform handTransform;
+        private Vector3 lastHandPosition;
 
-		[field: SerializeField, ReadOnly] // ыаоыоаоыоаыоаыо
-		public bool active { get; private set; }
+        public float rawLinearSpeed { get; private set; }
 
-		private void Awake() {
-			_transform = transform;
-			interactable = GetComponent<Interact.Interactable>();
-		}
+        [field: SerializeField, ReadOnly] // ыаоыоаоыоаыоаыо
+        public bool Active { get; private set; }
+        public bool Triggered => interactor != null && interactor.handInputProvider.firstButton;
 
-		private void OnEnable() {
-			interactable.InteractableTouched.AddListener(OnHandTouchedInteractable);
-			interactable.InteractableTouchEnded.AddListener(OnHandUntouchedInteractable);
-		}
+        private void Awake()
+        {
+            _transform = transform;
+            interactable = GetComponent<Interact.Interactable>();
+        }
 
-		private void OnDisable() {
-			interactable.InteractableTouched.RemoveListener(OnHandTouchedInteractable);
-			interactable.InteractableTouchEnded.RemoveListener(OnHandUntouchedInteractable);
-		}
+        private void OnEnable()
+        {
+            interactable.InteractableTouched.AddListener(OnHandTouchedInteractable);
+            interactable.InteractableTouchEnded.AddListener(OnHandUntouchedInteractable);
+        }
 
-		private void Update() {
-			if (!active) return;
-			var delta = handTransform.position - lastHandPosition;
-			var trueMovementVector = _transform.TransformVector(movementVector).normalized;
-			var trueDelta = Vector3.Dot(delta, trueMovementVector);
-			linearSpeed = trueDelta / Time.deltaTime;
-			Debug.Log(
-				$"delta: {delta}, " +
-				$"trueDelta: {trueDelta}, " +
-				$"linearSpeed: {linearSpeed}");
-		}
+        private void OnDisable()
+        {
+            interactable.InteractableTouched.RemoveListener(OnHandTouchedInteractable);
+            interactable.InteractableTouchEnded.RemoveListener(OnHandUntouchedInteractable);
+        }
 
-		private void OnHandTouchedInteractable(InteractableTouchedEventArgs arg0) {
-			active = true;
-			interactor = arg0.interactor;
-			handTransform = interactor.transform;
-			lastHandPosition = handTransform.position;
-		}
+        private void Update()
+        {
+            if (!Active) return;
+            var position = _transform.InverseTransformPoint(handTransform.position);
+            if (Triggered) // interactor.handInputProvider.firstButton
+            {
+                
+                var delta = position - lastHandPosition;
+                var trueMovementVector = movementVector; // _transform.TransformVector(movementVector).normalized;
+                var trueDelta = Vector3.Dot(delta, trueMovementVector);
+                rawLinearSpeed = trueDelta / Time.deltaTime;
+                Debug.Log(
+                    $"delta: {delta}, " +
+                    $"trueDelta: {trueDelta}, " +
+                    $"linearSpeed: {rawLinearSpeed}");
+            }
+            lastHandPosition = position;
+        }
 
-		private void OnHandUntouchedInteractable(InteractableTouchEndedEventArgs arg0) {
-			active = false;
-			interactor = null;
-			handTransform = null;
-		}
+        private void OnHandTouchedInteractable(InteractableTouchedEventArgs arg0)
+        {
+            Active = true;
+            interactor = arg0.interactor;
+            handTransform = interactor.transform;
+            lastHandPosition = _transform.InverseTransformPoint(handTransform.position);
+        }
 
-		/* -- */
+        private void OnHandUntouchedInteractable(InteractableTouchEndedEventArgs arg0)
+        {
+            Active = false;
+            interactor = null;
+            handTransform = null;
+        }
 
-		private void OnDrawGizmos() {
-			var tf = transform;
-			var pos = tf.position;
-			Gizmos.DrawLine(pos, pos + tf.TransformVector(movementVector) * 3);
-		}
-	}
+        /* -- */
+
+        private void OnDrawGizmos()
+        {
+            var tf = transform;
+            var pos = tf.position;
+            Gizmos.DrawLine(pos, pos + tf.TransformVector(movementVector) * 3);
+        }
+    }
 }

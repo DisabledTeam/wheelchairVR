@@ -4,7 +4,8 @@ using Valve.VR.InteractionSystem;
 
 namespace WheelInput
 {
-    public class InputUpdater : MonoBehaviour {
+    public class InputUpdater : MonoBehaviour
+    {
         [SerializeField] public SteamVR_Input_Sources leftHand = SteamVR_Input_Sources.LeftHand;
         [SerializeField] public SteamVR_Input_Sources rightHand = SteamVR_Input_Sources.RightHand;
         [SerializeReference] private InputProvider inputProvider;
@@ -28,60 +29,74 @@ namespace WheelInput
 
         private static InputUpdater _instance;
 
-        public static InputUpdater Instance {
-            get {
-                if (_instance == null) _instance = (InputUpdater)FindObjectOfType(typeof(InputUpdater));
+        public static InputUpdater Instance
+        {
+            get
+            {
+                if (_instance == null) _instance = (InputUpdater) FindObjectOfType(typeof(InputUpdater));
                 if (_instance == null)
                     _instance = new GameObject("InputUpdater").AddComponent<InputUpdater>();
 
                 return _instance;
             }
-            private set {
+            private set
+            {
                 if (_instance != null) Debug.LogError("InputUpdater should be one on the scene");
                 else _instance = value;
             }
         }
 
-        private void Awake() {
+        private void Awake()
+        {
             Instance = this;
             SteamVR.Initialize();
         }
 
-        private void Start() {
-            SteamVR_Input.GetActionSets().ForEach(actionSet => {
+        private void Start()
+        {
+            SteamVR_Input.GetActionSets().ForEach(actionSet =>
+            {
                 Debug.Log(actionSet.fullPath);
-                actionSet.Activate(SteamVR_Input_Sources.Any, 0, false);
                 actionSet.Activate(leftHand, 0, false);
                 actionSet.Activate(rightHand, 0, false);
+                // actionSet.Activate(SteamVR_Input_Sources.Any, 0, false);
             });
 
-            firstButton.onChange += 
-                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) 
-                    => {
-                    Debug.Log("firstButton.onChange");
-                    Debug.Log("fromSource == leftHand"+ (fromSource == leftHand));
-                    Debug.Log("fromSource == rightHand"+ (fromSource == rightHand));
-                    Debug.Log("fromSource"+ (fromSource));
-                    if(fromSource == leftHand) inputProvider.leftHand.firstButtonChanged.Invoke(newState);
-                    else if(fromSource == rightHand) inputProvider.rightHand.firstButtonChanged.Invoke(newState);
-                };
+            firstButton.AddOnChangeListener(
+                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
+                    inputProvider.leftHand.firstButtonChanged.Invoke(newState), leftHand
+            );
 
-            secondButton.onChange += 
-                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) 
-                    => {
-                    if(fromSource == leftHand) inputProvider.leftHand.secondButtonChanged.Invoke(newState);
-                    else if(fromSource == rightHand) inputProvider.rightHand.secondButtonChanged.Invoke(newState);
-                };
+            firstButton.AddOnChangeListener(
+                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
+                    inputProvider.rightHand.firstButtonChanged.Invoke(newState), rightHand
+            );
 
-            joystickTouch.onChange += 
-                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) 
-                    => {
-                    if(fromSource == leftHand) inputProvider.leftHand.joystickTouchChanged.Invoke(newState);
-                    else if(fromSource == rightHand) inputProvider.rightHand.joystickTouchChanged.Invoke(newState);
-                };
+            secondButton.AddOnChangeListener(
+                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
+                    inputProvider.leftHand.secondButtonChanged.Invoke(newState), leftHand
+            );
+
+            secondButton.AddOnChangeListener(
+                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
+                    inputProvider.rightHand.secondButtonChanged.Invoke(newState), rightHand
+            );
+
+
+            joystickTouch.AddOnChangeListener(
+                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
+                    inputProvider.leftHand.joystickTouchChanged.Invoke(newState), leftHand
+            );
+
+            joystickTouch.AddOnChangeListener(
+                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
+                    inputProvider.rightHand.joystickTouchChanged.Invoke(newState), rightHand
+            );
         }
 
-        private void Update() {
+
+        private void Update()
+        {
             inputProvider.leftHand.firstButton = firstButton.GetState(leftHand);
             inputProvider.leftHand.firstButtonAnalog = firstButtonAnalog.GetAxis(leftHand);
             inputProvider.leftHand.secondButton = secondButton.GetState(leftHand);
