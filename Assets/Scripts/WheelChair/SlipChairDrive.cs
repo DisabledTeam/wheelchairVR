@@ -70,7 +70,7 @@ namespace WheelChair
             var controllableAngularVelocity = GetKostylAngularSpeed() * trueUp; // linear speed to radians per second
             var oldAngularMasked = rb.angularVelocity;
             Vector3.Scale(oldAngularMasked, msk);
-            rb.angularVelocity = oldAngularMasked + controllableAngularVelocity;
+            rb.angularVelocity = controllableAngularVelocity;
             // Debug.Log($"TrueUp: {trueUp}, controllableAngularVelocity: {controllableAngularVelocity}");
         }
 
