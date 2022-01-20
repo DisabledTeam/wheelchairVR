@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handItem: {fileID: 5519568455066208768}
   simpleShoot: {fileID: 5519568455623747307}
+  testGunPickUpShot: 0
 --- !u!1 &5519568455475112704
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +266,7 @@ GameObject:
   - component: {fileID: 4959346580483611123}
   - component: {fileID: 4959346580483611122}
   - component: {fileID: 4959346580483611125}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: PickUpHandItem GUN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,8 +280,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5519568455845789686}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.037, y: 0.791, z: 1.086}
+  m_LocalRotation: {x: 0.011946788, y: -0.0000002682209, z: 0.0008084136, w: 0.99992836}
+  m_LocalPosition: {x: 0.0005, y: -0.0243, z: -0.0066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5519568456119196943}
@@ -289,7 +290,7 @@ Transform:
   - {fileID: 6781865810802260711}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.369, y: 0.001, z: 0.093}
 --- !u!114 &5519568455845789643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickUpHandItem: {fileID: 5519568455845789643}
   _rigidbody: {fileID: 5519568455845789640}
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!1 &5519568456119196942
 GameObject:
   m_ObjectHideFlags: 0

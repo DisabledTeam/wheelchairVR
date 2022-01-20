@@ -22,9 +22,10 @@ namespace Interactable
             if (currentHandItem != null) RemoveItem();
             currentHandItemGO = handItem.GetTransform().gameObject;
             currentHandItem = handItem;
-            currentHandItem.GetTransform().position =handCenterPoint.TransformPoint(Vector3.zero);
-            currentHandItem.GetTransform().rotation = Quaternion.identity;
-            currentHandItem.GetTransform().SetParent(handCenterPoint, true);
+            currentHandItem.GetTransform().SetParent(handCenterPoint, false);
+            currentHandItem.GetTransform().localPosition = Vector3.zero;
+            currentHandItem.GetTransform().localRotation = Quaternion.identity;
+
             currentHandItem.SetInHolder(this, handInputProvider);
             isEmpty = false;
         }

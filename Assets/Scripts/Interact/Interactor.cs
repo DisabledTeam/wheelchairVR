@@ -19,6 +19,16 @@ namespace Interact
         //todo: custom interactable condition - custom button etc
         private List<Interactable> clickInteractables = new List<Interactable>();
 
+        public void AddClickInteractables(Interactable interactable)
+        {
+            clickInteractables.Add(interactable);
+        }
+
+        public void RemoveClickInteractables(Interactable interactable)
+        {
+            clickInteractables.Remove(interactable);
+        }
+
         private void Awake()
         {
             handInputProvider = inputProvider.getHandInputByHand(hand);

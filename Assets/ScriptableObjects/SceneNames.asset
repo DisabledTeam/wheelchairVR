@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b711ccd5d44086b1ac6cab8352d3cc, type: 3}
   m_Name: SceneNames
   m_EditorClassIdentifier: 
-  ManagerScene: ManagerScene
+  ManagerScene: ManagerScenes
   GunScene: GunScene
   WheelsScene: MoveScene
   WheelsShootScene: WheelsShootScene

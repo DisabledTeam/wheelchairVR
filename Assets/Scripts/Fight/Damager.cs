@@ -24,9 +24,15 @@ namespace Fight
         {
             if (other.gameObject.TryGetComponent<Health>(out var health))
             {
-                if (health.Team != attackerTeam) health.GetDamage(damage);
-                else return;
-                if (destroyOnDamage) DestroyView();
+                if (health.Team == attackerTeam)
+                    return;
+                else
+                    health.GetDamage(damage);
+                if (destroyOnDamage)
+                {
+                    Debug.Log("destroyOnDamage" + other.gameObject.name);
+                    DestroyView();
+                }
             }
 
             if (destroyOnCollide) DestroyView();

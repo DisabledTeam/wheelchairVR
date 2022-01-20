@@ -236,8 +236,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2016142, y: 0.2955699, z: 0.16650954}
-  m_Center: {x: -0.035820678, y: 0.13685668, z: 0.042773053}
+  m_Size: {x: 0.2016142, y: 0.2955699, z: 0.20540237}
+  m_Center: {x: -0.035820678, y: 0.13685668, z: 0.023326635}
 --- !u!1 &5519568456119196942
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +351,9 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3290179206811328055, guid: d84a392e170d9a940826abf2304f6386, type: 3}
+    - {fileID: 1959909757206326978, guid: d84a392e170d9a940826abf2304f6386, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d84a392e170d9a940826abf2304f6386, type: 3}
 --- !u!4 &4479881135469941798 stripped
 Transform:

@@ -2343,6 +2343,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49dcf8d1b9f72a1419504f541f6f4217, type: 3}
+--- !u!1 &786892235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786892237}
+  - component: {fileID: 786892236}
+  m_Layer: 0
+  m_Name: Updater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &786892236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786892235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b5f2240c3043e8954872059493e19d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: 1
+  rightHand: 2
+  inputProvider: {fileID: 11400000, guid: bef2615eaa29e1443a4c6db6f6d424d8, type: 2}
+  firstButton:
+    actionPath: /actions/wheelchair/in/FirstButton
+    needsReinit: 0
+  firstButtonAnalog:
+    actionPath: /actions/wheelchair/in/FirstButtonAnalog
+    needsReinit: 0
+  secondButton:
+    actionPath: /actions/wheelchair/in/SecondButton
+    needsReinit: 0
+  joystickTouch:
+    actionPath: /actions/wheelchair/in/JoystickTouched
+    needsReinit: 0
+  joyStick:
+    actionPath: /actions/wheelchair/in/JoyStick
+    needsReinit: 0
+--- !u!4 &786892237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786892235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.56651616, y: 1.624723, z: 1.7985504}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &819068356
 GameObject:
   m_ObjectHideFlags: 0
