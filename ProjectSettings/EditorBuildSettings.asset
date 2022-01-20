@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BuildScenes/MoveScene.unity
     guid: dd764f720c4f67842a0beafcd3bfacdd
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/WheelsShowcase.unity
+    guid: de5fcced6d723a4408049d747768d556
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
