@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Interact;
 using UnityEngine;
+using UnityEngine.UI;
 using WheelInput;
 
 namespace Interactable
@@ -23,11 +24,31 @@ namespace Interactable
         [SerializeField]
         private List<HolderProviderCombination> _combinations;
 
+        [SerializeField] private bool isDropDisabled;
+        
+        
         public bool IsLeftHandEmpty => leftHolder.IsEmpty;
+        public bool IsDropDisabled => isDropDisabled;
         public bool IsRightHandEmpty => rightHolder.IsEmpty;
+
+        
+        
+        public HandInputProvider LeftHandInputProvider => leftInteractor.handInputProvider;
+        public HandInputProvider RightHandInputProvider => rightInteractor.handInputProvider;
+
         public bool IsHandEmpty(PlayerHandAxis axis) => GetHolder(axis).IsEmpty;
 
 
+        
+        public void DisableInventoryDrop()
+        {
+            isDropDisabled = true;
+        }
+        
+        public void EnableInventoryDrop()
+        {
+            isDropDisabled = false;
+        }
         private void OnEnable()
         {
             playerHandPickUpChannel.handPickedUpItemEvent.AddListener(OnNewPickUp);
@@ -40,7 +61,7 @@ namespace Interactable
 
         private void OnDestroy()
         {
-            _combinations.ForEach(c=>c.Deconstruct());
+            _combinations.ForEach(c => c.Deconstruct());
         }
 
         private void OnNewPickUp(HandPickedUpItemEventArgs arg0)
@@ -50,14 +71,19 @@ namespace Interactable
 
         private void EquipPickUp(PickUpHandInfo info)
         {
-            var axis = info.HandAxis;
-            var selectedHolder = GetHolder(axis);
-            if (!selectedHolder.IsEmpty) DeEquipPickUp(axis);
-            selectedHolder.SetUpItem(info.UsedPickUp, info.HandInputProvider);
-            GetInteractor(axis).Lock();
-            SetInteractable(axis, info.Interactable).Lock();
+            EquipHandItem(info.HandAxis, info.UsedPickUp);
+            SetInteractable(info.HandAxis, info.Interactable).Lock();
+        }
 
-            _combinations.Add(new HolderProviderCombination(selectedHolder, info.HandInputProvider, this, axis));
+        public void EquipHandItem(PlayerHandAxis handAxis, IHandItem handItem)
+        {
+            var selectedHolder = GetHolder(handAxis);
+            if (!selectedHolder.IsEmpty) DeEquipPickUp(handAxis);
+            var handInputProvider = GetInteractor(handAxis).handInputProvider;
+            
+            selectedHolder.SetUpItem(handItem, handInputProvider);
+            GetInteractor(handAxis).Lock();
+            _combinations.Add(new HolderProviderCombination(selectedHolder, handInputProvider, this, handAxis));
         }
 
 
@@ -72,7 +98,7 @@ namespace Interactable
         {
             foreach (var combination in _combinations.ToList())
             {
-                if(combination.GetHandItem()==handItem) DeEquipPickUp(combination);
+                if (combination.GetHandItem() == handItem) DeEquipPickUp(combination);
             }
         }
 
@@ -173,6 +199,8 @@ namespace Interactable
         {
             if (arg0 == false)
             {
+                
+                if(!HandsItemControllerManagerSystem.IsDropDisabled)
                 HandsItemControllerManagerSystem.DeEquipPickUp(this);
             }
         }
