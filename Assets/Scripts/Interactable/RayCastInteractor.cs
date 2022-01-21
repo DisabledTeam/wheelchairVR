@@ -56,6 +56,10 @@ namespace DefaultNamespace.Interactable
             {
                 SetNewInteractable(pickedInteractable);
             }
+            else if (pickedInteractable == null)
+            {
+                if (currentInteractable) RemoveInteractable(currentInteractable);
+            }
         }
 
         private void SetNewInteractable(Interact.Interactable interactable)

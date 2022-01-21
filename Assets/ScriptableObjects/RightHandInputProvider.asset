@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _firstButton: 0
   firstButtonAnalog: 0
-  _secondButton: 0
+  _secondButton: 1
   _joystickTouch: 0
   joyStick: {x: 0, y: 0}
   internal_firstButtonChanged:

@@ -4,6 +4,7 @@ using UnityEngine;
 using Valve.VR;
 
 namespace Wheels {
+	[SelectionBase]
 	public class DetachedWheel : MonoBehaviour {
 		public DetachInfo DetachInfo;
 
