@@ -25,30 +25,29 @@ namespace Interactable
         private List<HolderProviderCombination> _combinations;
 
         [SerializeField] private bool isDropDisabled;
-        
-        
+
+
         public bool IsLeftHandEmpty => leftHolder.IsEmpty;
         public bool IsDropDisabled => isDropDisabled;
         public bool IsRightHandEmpty => rightHolder.IsEmpty;
 
-        
-        
+
         public HandInputProvider LeftHandInputProvider => leftInteractor.handInputProvider;
         public HandInputProvider RightHandInputProvider => rightInteractor.handInputProvider;
 
         public bool IsHandEmpty(PlayerHandAxis axis) => GetHolder(axis).IsEmpty;
 
 
-        
         public void DisableInventoryDrop()
         {
             isDropDisabled = true;
         }
-        
+
         public void EnableInventoryDrop()
         {
             isDropDisabled = false;
         }
+
         private void OnEnable()
         {
             playerHandPickUpChannel.handPickedUpItemEvent.AddListener(OnNewPickUp);
@@ -80,7 +79,7 @@ namespace Interactable
             var selectedHolder = GetHolder(handAxis);
             if (!selectedHolder.IsEmpty) DeEquipPickUp(handAxis);
             var handInputProvider = GetInteractor(handAxis).handInputProvider;
-            
+
             selectedHolder.SetUpItem(handItem, handInputProvider);
             GetInteractor(handAxis).Lock();
             _combinations.Add(new HolderProviderCombination(selectedHolder, handInputProvider, this, handAxis));
@@ -199,9 +198,8 @@ namespace Interactable
         {
             if (arg0 == false)
             {
-                
-                if(!HandsItemControllerManagerSystem.IsDropDisabled)
-                HandsItemControllerManagerSystem.DeEquipPickUp(this);
+                if (!HandsItemControllerManagerSystem.IsDropDisabled)
+                    HandsItemControllerManagerSystem.DeEquipPickUp(this);
             }
         }
 

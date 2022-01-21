@@ -90,6 +90,11 @@ MonoBehaviour:
   inventory: {fileID: 4443513086632738740}
   teleporterPrefab: {fileID: 2586871938840502352, guid: 299914075b572704fa486d9f605fe757,
     type: 3}
+  testPrefabs:
+  - {fileID: 2586871938840502352, guid: 42f416c3cb1b6974ab4fcb1e11cd0e84, type: 3}
+  - {fileID: 2586871938840502352, guid: 299914075b572704fa486d9f605fe757, type: 3}
+  currentHandItemId: 0
+  canSwap: 1
 --- !u!1 &2379729282473253851
 GameObject:
   m_ObjectHideFlags: 0
