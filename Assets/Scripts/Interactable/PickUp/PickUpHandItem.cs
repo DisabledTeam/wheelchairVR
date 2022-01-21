@@ -96,6 +96,16 @@ namespace Interactable
             return transform;
         }
 
+        public Vector3 GetPositionInHand()
+        {
+            return handItem.GetPositionInHand();
+        }
+
+        public Vector3 GetRotationInHand()
+        {
+            return handItem.GetRotationInHand();
+        }
+
         private void OnEnable()
         {
             interactable.InteractableInteracted.AddListener(OnInteract);

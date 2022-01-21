@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnDrop: 0
+  positionInHand: {x: 0, y: 0.05, z: 0.07}
+  rotationInHand: {x: 12, y: 0, z: 50}
   isSetted: 0
   holder: {fileID: 0}
   handInputProvider: {fileID: 0}

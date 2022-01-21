@@ -8,5 +8,8 @@ namespace Interactable
         void SetInHolder(HandItemHolder holder, HandInputProvider handInputProvider);
         void RemoveFromHolder();
         Transform GetTransform();
+
+        Vector3 GetPositionInHand();
+        Vector3 GetRotationInHand();
     }
 }

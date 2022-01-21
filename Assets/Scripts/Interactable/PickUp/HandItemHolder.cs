@@ -23,8 +23,8 @@ namespace Interactable
             currentHandItemGO = handItem.GetTransform().gameObject;
             currentHandItem = handItem;
             currentHandItem.GetTransform().SetParent(handCenterPoint, false);
-            currentHandItem.GetTransform().localPosition = Vector3.zero;
-            currentHandItem.GetTransform().localRotation = Quaternion.identity;
+            currentHandItem.GetTransform().localPosition = currentHandItem.GetPositionInHand();
+            currentHandItem.GetTransform().rotation = Quaternion.Euler(currentHandItem.GetRotationInHand());
 
             currentHandItem.SetInHolder(this, handInputProvider);
             isEmpty = false;

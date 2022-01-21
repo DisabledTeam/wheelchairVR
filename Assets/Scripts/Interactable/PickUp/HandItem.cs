@@ -8,7 +8,9 @@ namespace Interactable
     {
         [Header("Settings")]
         [SerializeField] private bool destroyOnDrop;
-
+        [SerializeField] private Vector3 positionInHand;
+        [SerializeField] private Vector3 rotationInHand;
+        
         [Header("Monitoring")]
         [SerializeField] private bool isSetted;
         [SerializeField] private HandItemHolder holder;
@@ -38,6 +40,16 @@ namespace Interactable
         public Transform GetTransform()
         {
             return transform;
+        }
+
+        public Vector3 GetPositionInHand()
+        {
+            return positionInHand;
+        }
+
+        public Vector3 GetRotationInHand()
+        {
+            return rotationInHand;
         }
     }
 }

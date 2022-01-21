@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 064315d0056bfd44fbeb983b6b393925,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 484b16584918d7a489da30739fcd251e,
     type: 2}
 --- !u!196 &4
@@ -5935,7 +5936,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4443513087951011109}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5bbd0e916cf4f0e912137cc6e14fc3e, type: 3}
   m_Name: 
@@ -6070,17 +6071,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4443513087951011113}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5bbd0e916cf4f0e912137cc6e14fc3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2103
   interactor: {fileID: 4443513087951011112}
   maxRaycast: 10
-  lineRenderer: {fileID: 0}
+  lineRenderer: {fileID: 4443513087951011115}
   currentInteractable: {fileID: 0}
 --- !u!120 &4443513087951011115
 LineRenderer:

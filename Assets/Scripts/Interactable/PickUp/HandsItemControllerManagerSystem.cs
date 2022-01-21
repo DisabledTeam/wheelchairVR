@@ -38,6 +38,11 @@ namespace Interactable
             playerHandPickUpChannel.handPickedUpItemEvent.RemoveListener(OnNewPickUp);
         }
 
+        private void OnDestroy()
+        {
+            _combinations.ForEach(c=>c.Deconstruct());
+        }
+
         private void OnNewPickUp(HandPickedUpItemEventArgs arg0)
         {
             EquipPickUp(arg0.info);
