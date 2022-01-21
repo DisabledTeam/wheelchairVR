@@ -1,7 +1,6 @@
 using System;
 using HealthBar;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

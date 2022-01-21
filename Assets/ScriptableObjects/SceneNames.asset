@@ -15,6 +15,6 @@ MonoBehaviour:
   ManagerScene: ManagerScenes
   GunScene: GunScene
   WheelsScene: MoveScene
-  WheelsShootScene: WheelsShootScene
-  WheelsShootNightScene: WheelsShootSceneNight
-  WheelsSwapDemonstrationScene: ManagerScene
+  WheelsShootScene: Arena
+  WheelsShootNightScene: MoveShootSceneNight
+  WheelsSwapDemonstrationScene: WheelsShowcase

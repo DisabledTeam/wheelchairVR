@@ -15,8 +15,8 @@ MonoBehaviour:
   _firstButton: 0
   firstButtonAnalog: 0
   _secondButton: 0
-  _joystickTouch: 0
-  joyStick: {x: 0, y: 0}
+  _joystickTouch: 1
+  joyStick: {x: 0, y: 1}
   internal_firstButtonChanged:
     m_PersistentCalls:
       m_Calls: []

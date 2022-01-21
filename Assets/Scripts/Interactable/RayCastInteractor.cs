@@ -25,31 +25,37 @@ namespace DefaultNamespace.Interactable
 
         private void Update()
         {
-            if(currentInteractable) 
-                interactor.RemoveClickInteractables(currentInteractable);
-            
-            if (!(interactor.handInputProvider.joyStick.y > 0.5f) ||
-                !interactor.handInputProvider.joystickTouch)
+            Interact.Interactable pickedInteractable = null;
+
+            if (!interactor.GetLock()) // Не залочена рука
             {
-                _lineRenderer.enabled = false;
-                return;
-            };
-            
-            var ray = new Ray(transform.position, transform.forward);
-            UpdateLineReneder();
-            
-            if (!Physics.Raycast(ray, out var hit, maxRaycast,_layerMask)) return;
-            if (hit.collider.gameObject.TryGetComponent<PickUpHandItem>(out var item))
-            {
-                var interactable = item.GetComponent<Interact.Interactable>();
-                currentInteractable = interactable;
-                interactor.AddClickInteractables(currentInteractable);
+                if (!(interactor.handInputProvider.joyStick.y > 0.5f) ||
+                    !interactor.handInputProvider.joystickTouch) // Тач + вверх трек
+                {
+                    var ray = new Ray(transform.position, transform.forward);
+                    UpdateLineReneder();
+                    if (Physics.Raycast(ray, out var hit, maxRaycast, _layerMask)) // Произошел рейкаст
+                    {
+                        if (hit.collider.gameObject.TryGetComponent<PickUpHandItem>(out var item)) // Есть пикап
+                        {
+                            var interactable = item.GetComponent<Interact.Interactable>(); // Взяли интерактбл
+                            pickedInteractable = interactable;
+                        }
+                    }
+                }
+                else
+                {
+                    _lineRenderer.enabled = false;
+                }
             }
-            else
-            {
-                interactor.RemoveClickInteractables(currentInteractable);
-                currentInteractable = null;
-            }
+
+            if (currentInteractable != pickedInteractable && currentInteractable) 
+                interactor.RemoveClickInteractables(currentInteractable); // Нужно поменять - убираем старый (если был)
+            
+            if(pickedInteractable)
+                interactor.AddClickInteractables(pickedInteractable);
+
+            currentInteractable = pickedInteractable;
         }
 
 

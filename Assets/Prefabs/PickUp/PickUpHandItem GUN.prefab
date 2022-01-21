@@ -359,7 +359,7 @@ MonoBehaviour:
   _lock: 0
   interactableNeedToBeFreeToInteract: 1
   interactorNeedToBeFreeToInteract: 1
-  interactorNeedToBeClickedToInteract: 0
+  interactorNeedToBeClickedToInteract: 1
 --- !u!114 &4959346580483611125
 MonoBehaviour:
   m_ObjectHideFlags: 0

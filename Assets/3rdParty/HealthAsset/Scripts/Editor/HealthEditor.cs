@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 
 namespace HealthBar.Editor
 {
@@ -20,6 +21,11 @@ namespace HealthBar.Editor
                             true) as
                         DamagePopUpper;
 
+
+            if (GUILayout.Button("Damage50"))
+            {
+                health.GetDamage(50);
+            }
 
             base.OnInspectorGUI();
         }

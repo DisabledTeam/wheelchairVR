@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackerTeam: 0
-  damage: 10
+  damage: 50
   destroyOnDamage: 1
   destroyOnCollide: 1
   destroyParticles: {fileID: 19800002, guid: dfc6c5578352697428ae41183e0c0dc4, type: 3}
