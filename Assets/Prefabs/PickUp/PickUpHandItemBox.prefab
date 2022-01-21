@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 4959346580483611125}
   - component: {fileID: 3561099818799668424}
   - component: {fileID: 8363166935236010879}
+  - component: {fileID: 3555381348944148825}
   m_Layer: 11
   m_Name: PickUpHandItemBox
   m_TagString: Untagged
@@ -238,6 +239,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.34498125, y: 0.33680826, z: 0.3342859}
   m_Center: {x: 0.0016418397, y: -0.0035571158, z: 0.019480735}
+--- !u!114 &3555381348944148825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519568455845789686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d88c0db139d4e1da5e315635cf4fd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NeedHighlight: 1
+  interactable: {fileID: 4959346580483611122}
+  hideOnHighlight: []
+  highlightMat: {fileID: 2100000, guid: 7b939e5e799d98a469f594828ebab52e, type: 2}
+  isHighlightEnabled: 0
+  hoverCount: 0
 --- !u!1 &5519568456119196942
 GameObject:
   m_ObjectHideFlags: 0

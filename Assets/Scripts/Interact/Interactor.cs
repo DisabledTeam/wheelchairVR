@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Attributes;
 using Interact.Lock;
 using Interactable;
 using UnityEngine;
@@ -17,16 +18,19 @@ namespace Interact
 
 
         //todo: custom interactable condition - custom button etc
-        private List<Interactable> clickInteractables = new List<Interactable>();
+        [ReadOnly]
+        [SerializeField] private List<Interactable> clickInteractables = new List<Interactable>();
 
         public void AddClickInteractables(Interactable interactable)
         {
             clickInteractables.Add(interactable);
+            interactable.OnAddedToCanBeInteracted(this);
         }
 
         public void RemoveClickInteractables(Interactable interactable)
         {
             clickInteractables.Remove(interactable);
+            interactable.OnRemovedToCanBeInteracted(this);
         }
 
         private void Awake()
@@ -72,7 +76,7 @@ namespace Interact
             if (!other.TryGetComponent<Interactable>(out var interactable)) return;
             interactable.OnTouch(this);
             if (interactable.interactorNeedToBeClickedToInteract)
-                clickInteractables.Add(interactable);
+                AddClickInteractables(interactable);
             else
             {
                 TryInteract(interactable);
@@ -83,7 +87,7 @@ namespace Interact
         {
             if (!other.TryGetComponent<Interactable>(out var interactable)) return;
             interactable.OnTouchEnd(this);
-            clickInteractables.Remove(interactable);
+            RemoveClickInteractables(interactable);
         }
     }
 }

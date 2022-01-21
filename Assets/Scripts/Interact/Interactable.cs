@@ -33,6 +33,9 @@ namespace Interact {
 	}
 
 	public class InteractableInteractedEvent : UnityEvent<InteractableInteractedEventArgs> { }
+	
+	public class CanBeInteractedBeginEvent : UnityEvent<InteractableInteractedEventArgs> { }
+	public class CanBeInteractedEndEvent : UnityEvent<InteractableInteractedEventArgs> { }
 
 
 	public class Interactable : LockableMonoBehaviour {
@@ -45,6 +48,8 @@ namespace Interact {
 		public InteractableTouchedEvent InteractableTouched = new InteractableTouchedEvent();
 		public InteractableTouchEndedEvent InteractableTouchEnded = new InteractableTouchEndedEvent();
 		public InteractableInteractedEvent InteractableInteracted = new InteractableInteractedEvent();
+		public CanBeInteractedBeginEvent CanBeInteractedBegin = new CanBeInteractedBeginEvent();
+		public CanBeInteractedEndEvent CanBeInteractedEnd = new CanBeInteractedEndEvent();
 
 		public void OnInteract(Interactor interactor) {
 			InteractableInteracted.Invoke(new InteractableInteractedEventArgs(interactor));
@@ -56,6 +61,16 @@ namespace Interact {
 
 		public void OnTouchEnd(Interactor interactor) {
 			InteractableTouchEnded.Invoke(new InteractableTouchEndedEventArgs(interactor));
+		}
+
+		public void OnAddedToCanBeInteracted(Interactor interactor)
+		{
+			CanBeInteractedBegin.Invoke(new InteractableInteractedEventArgs(interactor));
+		}
+
+		public void OnRemovedToCanBeInteracted(Interactor interactor)
+		{
+			CanBeInteractedEnd.Invoke(new InteractableInteractedEventArgs(interactor));
 		}
 	}
 }
