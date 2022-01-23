@@ -70,9 +70,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handItem: {fileID: 2586871938840502352}
-  sceneNames: {fileID: 11400000, guid: 039eb025fb5c459489f3c9e806fff206, type: 2}
   isActive: 0
   handInputProvider: {fileID: 0}
+  sceneNames: {fileID: 11400000, guid: 039eb025fb5c459489f3c9e806fff206, type: 2}
 --- !u!1 &1876343858363812800
 GameObject:
   m_ObjectHideFlags: 0

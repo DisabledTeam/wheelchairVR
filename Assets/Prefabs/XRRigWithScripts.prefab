@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2379729282457961674}
   - component: {fileID: 2379729282457961673}
   - component: {fileID: 4443513086632738740}
+  - component: {fileID: 6059789634438494822}
   m_Layer: 0
   m_Name: XRRigWithScripts
   m_TagString: Untagged
@@ -75,6 +76,19 @@ MonoBehaviour:
   rightInteractable: {fileID: 0}
   _combinations: []
   isDropDisabled: 0
+--- !u!114 &6059789634438494822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2379729282457961672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe80460c51140e1b2a79bbde3f21481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTransform: {fileID: 2379729282457961674}
 --- !u!1 &2379729282473253851
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +174,6 @@ MonoBehaviour:
   _lock: 0
   hand: 0
   inputProvider: {fileID: 11400000, guid: bef2615eaa29e1443a4c6db6f6d424d8, type: 2}
-  handInputProvider: {fileID: 0}
   clickInteractables: []
 --- !u!135 &4443513086632738748
 SphereCollider:
@@ -377,7 +390,6 @@ MonoBehaviour:
   _lock: 0
   hand: 1
   inputProvider: {fileID: 11400000, guid: bef2615eaa29e1443a4c6db6f6d424d8, type: 2}
-  handInputProvider: {fileID: 0}
   clickInteractables: []
 --- !u!135 &4443513086632738749
 SphereCollider:

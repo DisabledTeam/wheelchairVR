@@ -475,6 +475,7 @@ MonoBehaviour:
   leftInteractable: {fileID: 0}
   rightInteractable: {fileID: 0}
   _combinations: []
+  isDropDisabled: 0
 --- !u!4 &361596648
 Transform:
   m_ObjectHideFlags: 0
@@ -3377,7 +3378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326634580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2093, y: 0, z: -6.86}
+  m_LocalPosition: {x: -0.2093, y: 0, z: -6.81}
   m_LocalScale: {x: 15.790181, y: 0.074753, z: 12.060356}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3924,7 +3925,6 @@ MonoBehaviour:
   _lock: 0
   hand: 0
   inputProvider: {fileID: 11400000, guid: bef2615eaa29e1443a4c6db6f6d424d8, type: 2}
-  handInputProvider: {fileID: 0}
   clickInteractables: []
 --- !u!135 &1479994812
 SphereCollider:
@@ -4785,7 +4785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708342695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8045433, y: 2.8770149, z: -7.2868752}
+  m_LocalPosition: {x: 2.18, y: 2.8770149, z: -3.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1436833084}
