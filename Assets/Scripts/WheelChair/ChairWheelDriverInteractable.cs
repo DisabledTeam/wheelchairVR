@@ -22,7 +22,7 @@ namespace WheelChair
 
         [field: SerializeField, ReadOnly] // ыаоыоаоыоаыоаыо
         public bool Active { get; private set; }
-        public bool Triggered => interactor != null && interactor.handInputProvider.firstButton;
+        public bool Triggered => interactor != null && interactor.HandInputProvider.firstButton;
 
         private void Awake()
         {

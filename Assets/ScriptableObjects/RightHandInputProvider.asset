@@ -15,8 +15,9 @@ MonoBehaviour:
   _firstButton: 0
   firstButtonAnalog: 0
   _secondButton: 0
-  _joystickTouch: 0
-  joyStick: {x: 0, y: 0}
+  _joystickTouch: 1
+  _grabButton: 0
+  joyStick: {x: 0, y: -1}
   internal_firstButtonChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -26,6 +27,9 @@ MonoBehaviour:
   internal_joystickTouchChanged:
     m_PersistentCalls:
       m_Calls: []
+  internal_grabButtonChanged:
+    m_PersistentCalls:
+      m_Calls: []
   firstButtonChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -33,5 +37,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   joystickTouchChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  grabButtonChanged:
     m_PersistentCalls:
       m_Calls: []

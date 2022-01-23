@@ -101,6 +101,10 @@
     {
       "name": "/actions/wheelchair/in/JoystickTouched",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/wheelchair/in/GrabButton",
+      "type": "boolean"
     }
   ],
   "action_sets": [

@@ -24,7 +24,11 @@ namespace WheelInput
 
         public SteamVR_Action_Vector2 joyStick =
             SteamVR_Input.GetAction<SteamVR_Action_Vector2>("wheelchair", "JoyStick");
-
+        
+        public SteamVR_Action_Boolean grabButton =
+            SteamVR_Input.GetAction<SteamVR_Action_Boolean>("wheelchair", "GrabButton");
+        
+        
         /* -- Singleton */
 
         private static InputUpdater _instance;
@@ -92,6 +96,18 @@ namespace WheelInput
                 (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
                     inputProvider.rightHand.joystickTouchChanged.Invoke(newState), rightHand
             );
+            
+            grabButton.AddOnChangeListener(
+                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
+                    inputProvider.rightHand.grabButtonChanged.Invoke(newState), rightHand
+            );
+            
+            grabButton.AddOnChangeListener(
+                (SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) =>
+                    inputProvider.leftHand.grabButtonChanged.Invoke(newState), leftHand
+            );
+            
+            
         }
 
 
@@ -102,12 +118,14 @@ namespace WheelInput
             inputProvider.leftHand.secondButton = secondButton.GetState(leftHand);
             inputProvider.leftHand.joystickTouch = joystickTouch.GetState(leftHand);
             inputProvider.leftHand.joyStick = joyStick.GetAxis(leftHand);
+            inputProvider.leftHand.grabButton = grabButton.GetState(leftHand);
 
             inputProvider.rightHand.firstButton = firstButton.GetState(rightHand);
             inputProvider.rightHand.firstButtonAnalog = firstButtonAnalog.GetAxis(rightHand);
             inputProvider.rightHand.secondButton = secondButton.GetState(rightHand);
             inputProvider.rightHand.joystickTouch = joystickTouch.GetState(rightHand);
             inputProvider.rightHand.joyStick = joyStick.GetAxis(rightHand);
+            inputProvider.rightHand.grabButton = grabButton.GetState(rightHand);
         }
     }
 }

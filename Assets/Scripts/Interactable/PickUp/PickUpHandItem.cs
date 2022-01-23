@@ -118,7 +118,7 @@ namespace Interactable
 
         private void OnInteract(InteractableInteractedEventArgs arg0)
         {
-            var info = PickUp(arg0.interactor.PlayerHandAxis, arg0.interactor.handInputProvider);
+            var info = PickUp(arg0.interactor.PlayerHandAxis, arg0.interactor.HandInputProvider);
            
         }
     }

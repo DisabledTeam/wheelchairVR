@@ -65,6 +65,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_wheelchair_JoystickTouched;
         
+        private static SteamVR_Action_Boolean p_wheelchair_GrabButton;
+        
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get
@@ -257,6 +259,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean wheelchair_GrabButton
+        {
+            get
+            {
+                return SteamVR_Actions.p_wheelchair_GrabButton.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -283,7 +293,8 @@ namespace Valve.VR
                     SteamVR_Actions.wheelchair_SecondButton,
                     SteamVR_Actions.wheelchair_JoyStick,
                     SteamVR_Actions.wheelchair_FirstButtonAnalog,
-                    SteamVR_Actions.wheelchair_JoystickTouched};
+                    SteamVR_Actions.wheelchair_JoystickTouched,
+                    SteamVR_Actions.wheelchair_GrabButton};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_Teleport,
@@ -307,7 +318,8 @@ namespace Valve.VR
                     SteamVR_Actions.wheelchair_SecondButton,
                     SteamVR_Actions.wheelchair_JoyStick,
                     SteamVR_Actions.wheelchair_FirstButtonAnalog,
-                    SteamVR_Actions.wheelchair_JoystickTouched};
+                    SteamVR_Actions.wheelchair_JoystickTouched,
+                    SteamVR_Actions.wheelchair_GrabButton};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
@@ -328,7 +340,8 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Reset,
                     SteamVR_Actions.wheelchair_FirstButton,
                     SteamVR_Actions.wheelchair_SecondButton,
-                    SteamVR_Actions.wheelchair_JoystickTouched};
+                    SteamVR_Actions.wheelchair_JoystickTouched,
+                    SteamVR_Actions.wheelchair_GrabButton};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.buggy_Throttle,
@@ -360,7 +373,8 @@ namespace Valve.VR
                     SteamVR_Actions.wheelchair_SecondButton,
                     SteamVR_Actions.wheelchair_JoyStick,
                     SteamVR_Actions.wheelchair_FirstButtonAnalog,
-                    SteamVR_Actions.wheelchair_JoystickTouched};
+                    SteamVR_Actions.wheelchair_JoystickTouched,
+                    SteamVR_Actions.wheelchair_GrabButton};
         }
         
         private static void PreInitActions()
@@ -389,6 +403,7 @@ namespace Valve.VR
             SteamVR_Actions.p_wheelchair_JoyStick = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/wheelchair/in/JoyStick")));
             SteamVR_Actions.p_wheelchair_FirstButtonAnalog = ((SteamVR_Action_Single)(SteamVR_Action.Create<SteamVR_Action_Single>("/actions/wheelchair/in/FirstButtonAnalog")));
             SteamVR_Actions.p_wheelchair_JoystickTouched = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/wheelchair/in/JoystickTouched")));
+            SteamVR_Actions.p_wheelchair_GrabButton = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/wheelchair/in/GrabButton")));
         }
     }
 }

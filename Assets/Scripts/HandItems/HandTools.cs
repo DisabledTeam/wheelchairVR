@@ -10,37 +10,80 @@ namespace DefaultNamespace
     [InspectorButtonClass]
     public class HandTools : MonoBehaviour
     {
-        [Header("Links")]
-        [SerializeField] private HandsItemControllerManagerSystem inventory;
-        [SerializeField] private HandItem teleporterPrefab;
-        [SerializeField] private HandItem[] testPrefabs;
+        [Header("Settings")]
+        [SerializeField] private PlayerHandAxis playerHandAxis;
 
+        [Header("Links")]
+        [SerializeField] private HandToolsConfig handToolsConfig;
+        [SerializeField] private HandsItemControllerManagerSystem inventory;
 
         [Header("Monitoring")]
         [SerializeField] private int currentHandItemId;
         [SerializeField] private bool canSwap = true;
+        [SerializeField] private float swapCooldown = 0.1f;
 
+        private HandInputProvider HandInputProvider => inventory.GetInputProvider(playerHandAxis);
 
-        private void Update()
+        public void SpawnNewItem(HandItem prefab)
         {
-            if (canSwap)
-            {
-                if (CheckHandToolsButton(inventory.LeftHandInputProvider))
-                {
-                    currentHandItemId++;
-                    currentHandItemId %= testPrefabs.Length;
-                    SpawnNewItem(testPrefabs[currentHandItemId], PlayerHandAxis.LeftHand);
-                    StartCoroutine(WaitSwap(0.1f));
-                }
+            var handItem = Instantiate(prefab);
+            PutNewItem(handItem, playerHandAxis);
+        }
 
-                if (CheckHandToolsButton(inventory.RightHandInputProvider))
-                {
-                    currentHandItemId++;
-                    currentHandItemId %= testPrefabs.Length;
-                    SpawnNewItem(testPrefabs[currentHandItemId], PlayerHandAxis.RightHand);
-                    StartCoroutine(WaitSwap(0.1f));
-                }
+        [InspectorButton("TestSpawnNextTool")]
+        public void TestSpawnNextTool()
+        {
+            SpawnNextTool();
+        }
+
+        private void OnEnable()
+        {
+            HandInputProvider.grabButtonChanged.AddListener(OnGrabButtonChanged);
+        }
+
+        private void OnDisable()
+        {
+            HandInputProvider.grabButtonChanged.RemoveListener(OnGrabButtonChanged);
+        }
+
+        private void OnGrabButtonChanged(bool arg0)
+        {
+            if (!canSwap) return;
+
+            if (arg0)
+            {
+                if (CheckHandToolsButton(HandInputProvider))
+                    SpawnNextTool();
             }
+        }
+
+        private void PutNewItem(IHandItem handItem, PlayerHandAxis handAxis)
+        {
+            inventory.EquipHandItem(handAxis, handItem);
+        }
+
+
+        private bool CheckHandToolsButton(HandInputProvider handInputProvider)
+        {
+            // return handInputProvider.joyStick.y < -0.5 && handInputProvider.secondButton;
+            return true;
+        }
+
+        private void SpawnNextTool()
+        {
+            currentHandItemId++;
+            currentHandItemId %= handToolsConfig.toolsPrefabs.Length;
+            SpawnNewItem(handToolsConfig.toolsPrefabs[currentHandItemId]);
+            StartCoroutine(WaitSwap(swapCooldown));
+        }
+
+        private IEnumerator WaitSwap(float time)
+        {
+            DisableInventoryDrop();
+            canSwap = false;
+            yield return new WaitForSeconds(time);
+            canSwap = true;
+            EnableInventoryDrop();
         }
 
         private void DisableInventoryDrop()
@@ -51,37 +94,6 @@ namespace DefaultNamespace
         private void EnableInventoryDrop()
         {
             inventory.EnableInventoryDrop();
-        }
-
-        [InspectorButton("TestTeleporter")]
-        public void TestTeleporter()
-        {
-            SpawnNewItem(teleporterPrefab, PlayerHandAxis.RightHand);
-        }
-
-        private bool CheckHandToolsButton(HandInputProvider handInputProvider)
-        {
-            return handInputProvider.joyStick.y < -0.5 && handInputProvider.secondButton;
-        }
-
-
-        public void SpawnNewItem(HandItem prefab, PlayerHandAxis handAxis)
-        {
-            var handItem = Instantiate(prefab);
-            PutNewItem(handItem, handAxis);
-        }
-
-        private void PutNewItem(IHandItem handItem, PlayerHandAxis handAxis)
-        {
-            inventory.EquipHandItem(handAxis, handItem);
-        }
-
-
-        private IEnumerator WaitSwap(float time)
-        {
-            canSwap = false;
-            yield return new WaitForSeconds(time);
-            canSwap = true;
         }
     }
 }

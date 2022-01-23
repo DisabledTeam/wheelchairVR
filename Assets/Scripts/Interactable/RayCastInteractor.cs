@@ -20,8 +20,8 @@ namespace DefaultNamespace.Interactable
 
 
         public bool NeedRaycastInteracting => !interactor.GetLock() &&
-                                              interactor.handInputProvider.joyStick.y > 0.5f &&
-                                              interactor.handInputProvider.joystickTouch;
+                                              interactor.HandInputProvider.joyStick.y > 0.5f &&
+                                              interactor.HandInputProvider.joystickTouch;
 
         private void Start()
         {

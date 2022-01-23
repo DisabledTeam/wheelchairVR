@@ -12,7 +12,19 @@ namespace Interact
     {
         [SerializeField] private PlayerHandAxis hand;
         [SerializeReference] private InputProvider inputProvider;
-        [HideInInspector] public HandInputProvider handInputProvider;
+
+
+        [HideInInspector] public HandInputProvider HandInputProvider
+        {
+            get
+            {
+                if (_handInputProvider) return _handInputProvider;
+                else _handInputProvider = inputProvider.getHandInputByHand(hand);
+                return _handInputProvider;
+            }
+        }
+
+        private HandInputProvider _handInputProvider;
 
         public PlayerHandAxis PlayerHandAxis => hand;
 
@@ -33,19 +45,14 @@ namespace Interact
             interactable.OnRemovedToCanBeInteracted(this);
         }
 
-        private void Awake()
-        {
-            handInputProvider = inputProvider.getHandInputByHand(hand);
-        }
-
         private void OnEnable()
         {
-            handInputProvider.firstButtonChanged.AddListener(OnInteractButtonChanged);
+            HandInputProvider.firstButtonChanged.AddListener(OnInteractButtonChanged);
         }
 
         private void OnDisable()
         {
-            handInputProvider.firstButtonChanged.RemoveListener(OnInteractButtonChanged);
+            HandInputProvider.firstButtonChanged.RemoveListener(OnInteractButtonChanged);
         }
 
         private void OnInteractButtonChanged(bool pressed)

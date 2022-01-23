@@ -56,5 +56,13 @@ namespace Valve.VR
                 return SteamVR_Actions.wheelchair_JoystickTouched;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean GrabButton
+        {
+            get
+            {
+                return SteamVR_Actions.wheelchair_GrabButton;
+            }
+        }
     }
 }

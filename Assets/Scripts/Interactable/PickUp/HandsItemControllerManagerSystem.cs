@@ -32,10 +32,20 @@ namespace Interactable
         public bool IsRightHandEmpty => rightHolder.IsEmpty;
 
 
-        public HandInputProvider LeftHandInputProvider => leftInteractor.handInputProvider;
-        public HandInputProvider RightHandInputProvider => rightInteractor.handInputProvider;
+        public HandInputProvider LeftHandInputProvider => leftInteractor.HandInputProvider;
+        public HandInputProvider RightHandInputProvider => rightInteractor.HandInputProvider;
 
         public bool IsHandEmpty(PlayerHandAxis axis) => GetHolder(axis).IsEmpty;
+
+        public HandInputProvider GetInputProvider(PlayerHandAxis axis)
+        {
+            return axis switch
+            {
+                PlayerHandAxis.LeftHand => LeftHandInputProvider,
+                PlayerHandAxis.RightHand => RightHandInputProvider,
+                _ => throw new ArgumentOutOfRangeException(nameof(axis), axis, null)
+            };
+        }
 
 
         public void DisableInventoryDrop()
@@ -46,6 +56,41 @@ namespace Interactable
         public void EnableInventoryDrop()
         {
             isDropDisabled = false;
+        }
+
+        public void EquipHandItem(PlayerHandAxis handAxis, IHandItem handItem)
+        {
+            var selectedHolder = GetHolder(handAxis);
+            if (!selectedHolder.IsEmpty) DeEquipPickUp(handAxis);
+            var handInputProvider = GetInteractor(handAxis).HandInputProvider;
+
+            selectedHolder.SetUpItem(handItem, handInputProvider);
+            GetInteractor(handAxis).Lock();
+            _combinations.Add(new HolderProviderCombination(selectedHolder, handInputProvider, this, handAxis));
+        }
+
+
+        public void DeEquipPickUp(PlayerHandAxis handAxis)
+        {
+            foreach (var combination in _combinations.ToList())
+            {
+                if (combination.PlayerHandAxis == handAxis) DeEquipPickUp(combination);
+            }
+        }
+
+        public void DeEquipPickUp(HolderProviderCombination combination)
+        {
+            DisconnectFromHolder(combination.PlayerHandAxis);
+            combination.Deconstruct();
+            _combinations.Remove(combination);
+        }
+
+        public void TryDeEquipHandItem(IHandItem handItem)
+        {
+            foreach (var combination in _combinations.ToList())
+            {
+                if (combination.GetHandItem() == handItem) DeEquipPickUp(combination);
+            }
         }
 
         private void OnEnable()
@@ -74,35 +119,8 @@ namespace Interactable
             SetInteractable(info.HandAxis, info.Interactable).Lock();
         }
 
-        public void EquipHandItem(PlayerHandAxis handAxis, IHandItem handItem)
-        {
-            var selectedHolder = GetHolder(handAxis);
-            if (!selectedHolder.IsEmpty) DeEquipPickUp(handAxis);
-            var handInputProvider = GetInteractor(handAxis).handInputProvider;
 
-            selectedHolder.SetUpItem(handItem, handInputProvider);
-            GetInteractor(handAxis).Lock();
-            _combinations.Add(new HolderProviderCombination(selectedHolder, handInputProvider, this, handAxis));
-        }
-
-
-        public void DeEquipPickUp(HolderProviderCombination combination)
-        {
-            DeEquipPickUp(combination.PlayerHandAxis);
-            combination.Deconstruct();
-            _combinations.Remove(combination);
-        }
-
-        public void TryDeEquipHandItem(IHandItem handItem)
-        {
-            foreach (var combination in _combinations.ToList())
-            {
-                if (combination.GetHandItem() == handItem) DeEquipPickUp(combination);
-            }
-        }
-
-
-        private void DeEquipPickUp(PlayerHandAxis axis)
+        private void DisconnectFromHolder(PlayerHandAxis axis)
         {
             var selectedHolder = GetHolder(axis);
             selectedHolder.RemoveItem();
@@ -178,6 +196,9 @@ namespace Interactable
         public HandsItemControllerManagerSystem HandsItemControllerManagerSystem;
         public PlayerHandAxis PlayerHandAxis;
 
+        [SerializeField] private bool pressed;
+
+
         public HolderProviderCombination(HandItemHolder handItemHolder, HandInputProvider handInputProvider,
             HandsItemControllerManagerSystem handsItemControllerManagerSystem, PlayerHandAxis playerHandAxis)
         {
@@ -196,10 +217,17 @@ namespace Interactable
 
         public void OnSecondButtonChanged(bool arg0)
         {
-            if (arg0 == false)
+            switch (arg0)
             {
-                if (!HandsItemControllerManagerSystem.IsDropDisabled)
-                    HandsItemControllerManagerSystem.DeEquipPickUp(this);
+                case true:
+                    pressed = true;
+                    break;
+                case false when pressed:
+                {
+                    if (!HandsItemControllerManagerSystem.IsDropDisabled)
+                        HandsItemControllerManagerSystem.DeEquipPickUp(this);
+                    break;
+                }
             }
         }
 

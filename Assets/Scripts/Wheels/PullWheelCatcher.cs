@@ -30,14 +30,14 @@ namespace Wheels
         private void Update()
         {
             if (!_currentInteractor) return;
-            if (_currentInteractor.handInputProvider.secondButton == false) return;
+            if (_currentInteractor.HandInputProvider.secondButton == false) return;
             if (!handsItemControllerManagerSystem.IsHandEmpty(_currentInteractor.PlayerHandAxis)) return;
             if (!wheelAxis.CanDetach(wheelSpotSite)) return;
 
             var detachInfo = wheelAxis.Detach(wheelSpotSite, false);
             var pickUpHandItem = detachInfo.detachObject.GetComponent<PickUpHandItem>();
             if (pickUpHandItem == null) throw new Exception("На оторованном колесе нет PickUpHandItem");
-            pickUpHandItem.PickUp(_currentInteractor.PlayerHandAxis, _currentInteractor.handInputProvider);
+            pickUpHandItem.PickUp(_currentInteractor.PlayerHandAxis, _currentInteractor.HandInputProvider);
         }
 
 
