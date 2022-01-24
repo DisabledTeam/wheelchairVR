@@ -20,6 +20,7 @@ namespace HealthBar
     {
         [SerializeField] private Team team = Team.Enemy;
         public bool needDestroyOnDie = true;
+        public float DestroyDelay = 2f;
         [HideInInspector] public bool needHealthBar = true;
         [HideInInspector] public HealthBar healthBar;
 
@@ -28,6 +29,9 @@ namespace HealthBar
 
         [SerializeField] private float maxHealthPoints;
         [SerializeField] private float currentHealthPoints;
+
+
+        [SerializeField] private bool idDead;
 
 
         public Team Team => team;
@@ -51,8 +55,6 @@ namespace HealthBar
         public void GetDamage(float damage, bool isCritical = false)
         {
             damageGottenEvent.Invoke(this, damage);
-            if (needHealthBar) ChangeHealthBar();
-            if (needDamagePopUp) PopUpDamage(damage, isCritical);
             if (CurrentHealthPoints - damage <= 0)
             {
                 CurrentHealthPoints = 0;
@@ -62,18 +64,23 @@ namespace HealthBar
             {
                 CurrentHealthPoints -= damage;
             }
+            
+            if (needHealthBar) ChangeHealthBar();
+            if (needDamagePopUp) PopUpDamage(damage, isCritical);
         }
 
         //unity events - shit 
         public void GetDamage(float damage)
         {
-            GetDamage(damage,false);
+            GetDamage(damage, false);
         }
 
         public void Die()
         {
+            if (idDead) return;
+            idDead = true;
             dieEvent.Invoke(this);
-            if (needDestroyOnDie) Destroy(gameObject);
+            if (needDestroyOnDie) Destroy(gameObject, DestroyDelay);
         }
 
 

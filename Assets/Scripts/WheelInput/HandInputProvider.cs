@@ -65,6 +65,16 @@ namespace WheelInput
 
         /* -- */
 
+        public void Clear()
+        {
+            _firstButton = false;
+            _grabButton = false;
+            _joystickTouch = false;
+            _secondButton = false;
+            firstButtonAnalog = 0;
+            joyStick = Vector2.zero;
+        }
+
         public UnityEvent<bool> internal_firstButtonChanged = new UnityEvent<bool>();
         public UnityEvent<bool> internal_secondButtonChanged = new UnityEvent<bool>();
         public UnityEvent<bool> internal_joystickTouchChanged = new UnityEvent<bool>();

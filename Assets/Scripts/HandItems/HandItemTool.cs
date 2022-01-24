@@ -22,7 +22,7 @@ namespace DefaultNamespace
         {
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             handItem.takenInHand.AddListener(OnTaken);
             handItem.droppedFromHand.AddListener(OnDropped);
@@ -41,7 +41,7 @@ namespace DefaultNamespace
             ItemTakenInHand();
         }
 
-        private void OnDisable()
+        protected virtual  void OnDisable()
         {
             handItem.takenInHand.RemoveListener(OnTaken);
             handItem.droppedFromHand.RemoveListener(OnDropped);

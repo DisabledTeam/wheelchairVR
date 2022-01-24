@@ -24,7 +24,7 @@ namespace Interactable
             currentHandItem = handItem;
             currentHandItem.GetTransform().SetParent(handCenterPoint, false);
             currentHandItem.GetTransform().localPosition = currentHandItem.GetPositionInHand();
-            currentHandItem.GetTransform().rotation = Quaternion.Euler(currentHandItem.GetRotationInHand());
+            currentHandItem.GetTransform().localRotation = Quaternion.Euler(currentHandItem.GetRotationInHand());
 
             currentHandItem.SetInHolder(this, handInputProvider);
             isEmpty = false;

@@ -25,6 +25,7 @@ namespace Interactable
             isSetted = true;
             this.holder = holder;
             this.handInputProvider = handInputProvider;
+            Debug.Log("SetInHolder takenInHand");
             takenInHand.Invoke(handInputProvider);
         }
 

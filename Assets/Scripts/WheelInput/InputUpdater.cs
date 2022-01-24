@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
@@ -54,6 +55,13 @@ namespace WheelInput
         {
             Instance = this;
             SteamVR.Initialize();
+            inputProvider.Clear();
+
+        }
+
+        private void OnDestroy()
+        {
+            inputProvider.Clear();
         }
 
         private void Start()

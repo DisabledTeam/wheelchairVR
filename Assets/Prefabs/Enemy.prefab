@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58dde8318c9c4ea980a9a81d8b36c074, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDestroyOnDead: 0
+  timeToDestroyOnDead: 2
   animator: {fileID: 5207861023565180292}
   enemy: {fileID: 1814000309965956187}
   health: {fileID: 1814000309965956185}
@@ -107,12 +107,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 1
   needDestroyOnDie: 1
+  DestroyDelay: 2
   needHealthBar: 1
   healthBar: {fileID: 8635808231651567518}
   needDamagePopUp: 1
   damagePopUpper: {fileID: 1814000309965956190}
   maxHealthPoints: 100
   currentHealthPoints: 100
+  idDead: 0
   damageGottenEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -303,6 +305,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1814000309965956181}
     m_Modifications:
+    - target: {fileID: 7995035573090571872, guid: 39066238de982a74e9bc45cc28f78474,
+        type: 3}
+      propertyPath: updateSpeedSeconds
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7995035573090571883, guid: 39066238de982a74e9bc45cc28f78474,
         type: 3}
       propertyPath: m_Name
@@ -427,6 +434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995035573090571886, guid: 39066238de982a74e9bc45cc28f78474,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39066238de982a74e9bc45cc28f78474, type: 3}

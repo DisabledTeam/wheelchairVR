@@ -319,12 +319,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 1
   needDestroyOnDie: 1
+  DestroyDelay: 2
   needHealthBar: 1
   healthBar: {fileID: 9079080849115789135}
   needDamagePopUp: 1
   damagePopUpper: {fileID: 1372275805901386895}
   maxHealthPoints: 100
   currentHealthPoints: 100
+  idDead: 0
   damageGottenEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3304,7 +3306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foregroundImage: {fileID: 9079080848340647077}
-  updateSpeedSeconds: 0
+  updateSpeedSeconds: 0.2
 --- !u!1 &9079080849562257814
 GameObject:
   m_ObjectHideFlags: 0

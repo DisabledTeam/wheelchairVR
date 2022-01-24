@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 0a847c11c99007e4aaaf39e9608ed766, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8619c51ff10dc6b41a25f6acaa7dd7a0, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2390,6 +2390,9 @@ MonoBehaviour:
     needsReinit: 0
   joyStick:
     actionPath: /actions/wheelchair/in/JoyStick
+    needsReinit: 0
+  grabButton:
+    actionPath: /actions/wheelchair/in/GrabButton
     needsReinit: 0
 --- !u!4 &786892237
 Transform:

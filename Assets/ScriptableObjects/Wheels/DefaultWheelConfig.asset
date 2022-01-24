@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdb3b811c2741a0ade746b557cbf7d3, type: 3}
   m_Name: DefaultWheelConfig
   m_EditorClassIdentifier: 
-  WheelRootPrefab: {fileID: 3802741562611806911, guid: 6a64debb72e5d06479680ac8e70ee6af,
+  WheelRootPrefab: {fileID: 9008440373201227596, guid: 35025557b86098949a80e1785ca0505d,
     type: 3}
   DetachPrefab: {fileID: 5509649820701446695, guid: 54af91125ab17094ea5b7b761cfbba45,
     type: 3}

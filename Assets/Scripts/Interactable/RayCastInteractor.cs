@@ -20,8 +20,9 @@ namespace DefaultNamespace.Interactable
 
 
         public bool NeedRaycastInteracting => !interactor.GetLock() &&
-                                              interactor.HandInputProvider.joyStick.y > 0.5f &&
-                                              interactor.HandInputProvider.joystickTouch;
+                                              interactor.HandInputProvider.joyStick.y > 0.2f &&
+                                              interactor.HandInputProvider.joystickTouch &&
+                                              interactor.HandInputProvider.secondButton;
 
         private void Start()
         {
@@ -32,6 +33,11 @@ namespace DefaultNamespace.Interactable
         {
             Interact.Interactable pickedInteractable = null;
             lineRenderer.enabled = NeedRaycastInteracting;
+            // Debug.Log("NeedRaycastInteracting"+NeedRaycastInteracting);
+            // Debug.Log("interactor.HandInputProvider.joyStick.y"+interactor.HandInputProvider.joyStick.y);
+            // Debug.Log("interactor.HandInputProvider.joystickTouch"+interactor.HandInputProvider.joystickTouch);
+            // Debug.Log("interactor.HandInputProvider.secondButton"+interactor.HandInputProvider.secondButton);
+            // Debug.Log("!interactor.GetLock()"+!interactor.GetLock());
 
             if (NeedRaycastInteracting) // Тач + вверх трек
             {

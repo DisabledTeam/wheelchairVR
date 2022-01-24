@@ -30,12 +30,19 @@ namespace Fight
                     health.GetDamage(damage);
                 if (destroyOnDamage)
                 {
-                    Debug.Log("destroyOnDamage" + other.gameObject.name);
                     DestroyView();
                 }
             }
 
-            if (destroyOnCollide) DestroyView();
+            if (destroyOnCollide)
+            {
+                if (other.gameObject.TryGetComponent<Damager>(out var damager))
+                {
+                    if (damager.attackerTeam == attackerTeam) return;
+                }
+
+                DestroyView();
+            }
         }
 
 

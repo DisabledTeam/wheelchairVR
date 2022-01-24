@@ -4,22 +4,21 @@ using WheelInput;
 
 namespace Interactable.Guns
 {
-
-
-    
     public class TestGunPickUp : MonoBehaviour
     {
         private enum TestGunPickUpShot
         {
             TriggerShoot,
             Shoot
-        
         }
-        
+
         [SerializeField] private HandItem handItem;
         [SerializeField] private SimpleShoot simpleShoot;
         [SerializeField] private TestGunPickUpShot testGunPickUpShot;
-        
+
+
+        private HandInputProvider _handInputProvider;
+
         public void OnFireButton()
         {
             switch (testGunPickUpShot)
@@ -33,8 +32,6 @@ namespace Interactable.Guns
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-           
         }
 
         private void OnEnable()
@@ -47,15 +44,18 @@ namespace Interactable.Guns
         {
             handItem.takenInHand.RemoveListener(OnTaken);
             handItem.droppedFromHand.RemoveListener(OnDropped);
+            if (_handInputProvider) _handInputProvider.firstButtonChanged.RemoveListener(OnFirstButtonChanged);
         }
 
         private void OnDropped(HandInputProvider arg0)
         {
+            _handInputProvider = null;
             arg0.firstButtonChanged.RemoveListener(OnFirstButtonChanged);
         }
 
         private void OnTaken(HandInputProvider arg0)
         {
+            _handInputProvider = arg0;
             arg0.firstButtonChanged.AddListener(OnFirstButtonChanged);
         }
 

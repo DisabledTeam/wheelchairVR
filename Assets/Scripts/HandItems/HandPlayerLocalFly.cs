@@ -30,17 +30,20 @@ namespace DefaultNamespace
         {
             positionSetter = FindObjectOfType<PlayerPositionSetter>();
             handInputProvider.firstButtonChanged.AddListener(OnFirstButton);
+            Debug.Log("ItemTakenInHand AddListener",this);
         }
 
         protected override void ItemDroppedFromHand()
         {
             handInputProvider.firstButtonChanged.RemoveListener(OnFirstButton);
+            Debug.Log("ItemDroppedFromHand RemoveListener",this);
         }
 
         private void OnFirstButton(bool arg0)
         {
             if (arg0)
             {
+                Debug.Log("OnFirstButton HandPlayerLocalFly",this);
                 var values = Enum.GetValues(typeof(FlyMod)).Cast<FlyMod>().ToList();
                 var indexOf = values.IndexOf(flyMod);
                 indexOf = (indexOf + 1) % values.Count;
@@ -71,7 +74,17 @@ namespace DefaultNamespace
                         throw new ArgumentOutOfRangeException();
                 }
 
-                positionSetter.MoveLocalTransform(moveVector * (speed * Time.deltaTime));
+                positionSetter.MoveRelativeForward(moveVector * (speed * Time.deltaTime));
+            }
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            if (handInputProvider)
+            {
+                handInputProvider.firstButtonChanged.RemoveListener(OnFirstButton);
+                Debug.Log("OnDisable RemoveListener",this);
             }
         }
     }

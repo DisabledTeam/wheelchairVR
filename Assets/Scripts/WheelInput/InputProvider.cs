@@ -15,5 +15,11 @@ namespace WheelInput
                 _ => null
             };
         }
+
+        public void Clear()
+        {
+            leftHand.Clear();
+            rightHand.Clear();
+        }
     }
 }
